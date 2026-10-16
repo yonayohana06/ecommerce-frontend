@@ -2,7 +2,7 @@ import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export type LanguageCode = "en" | "ar" | "es" | "de";
+export type LanguageCode = "en" | "id" | "ar" | "es" | "de";
 
 export type Language = {
   code: LanguageCode;
@@ -13,9 +13,7 @@ export type Language = {
 
 export const AVAILABLE_LANGUAGES: Language[] = [
   { code: "en", name: "English", dir: "ltr" },
-  { code: "ar", name: "العربية", dir: "rtl" },
-  { code: "es", name: "Español", dir: "ltr" },
-  { code: "de", name: "Deutsch", dir: "ltr" },
+  { code: "id", name: "Bahasa Indonesia", dir: "ltr" },
 ];
 
 type LanguageContextType = {

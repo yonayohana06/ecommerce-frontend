@@ -1,5 +1,6 @@
 import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
+import LanguageToggle from "@/components/common/LanguageToggle";
 import React from "react";
 import { Link } from "react-router";
 
@@ -31,6 +32,11 @@ export default function AuthLayout({
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Floating Language Switcher */}
+        <div className="fixed inset-e-6 top-6 z-50 flex items-center justify-end gap-3">
+          <LanguageToggle />
         </div>
 
         <div className="fixed inset-e-6 bottom-6 z-50 hidden sm:block">

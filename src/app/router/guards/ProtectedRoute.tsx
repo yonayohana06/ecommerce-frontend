@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router";
+import { useAuth } from "@/features/auth";
 
 interface ProtectedRouteProps {
-  isAuthenticated?: boolean;
   redirectPath?: string;
   children?: React.ReactNode;
 }
@@ -12,10 +12,15 @@ interface ProtectedRouteProps {
  * Redirects to `redirectPath` (defaults to `/signin`) if not authenticated.
  */
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  isAuthenticated = true,
   redirectPath = "/signin",
   children,
 }) => {
+  const { isAuthenticated, isInitialized } = useAuth();
+
+  if (!isInitialized) {
+    return null;
+  }
+
   if (!isAuthenticated) {
     return <Navigate to={redirectPath} replace />;
   }
