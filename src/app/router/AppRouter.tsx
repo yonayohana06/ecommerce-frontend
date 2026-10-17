@@ -6,6 +6,9 @@ import { ProtectedRoute, PublicRoute } from "./guards";
 // Feature page imports
 import { SignInPage, SignUpPage } from "@/features/auth";
 import { EcommerceDashboardPage } from "@/features/dashboard";
+import { OrdersPage } from "@/features/orders";
+import { ProductsPage, CreateProductPage } from "@/features/products";
+import { CategoriesPage } from "@/features/categories";
 import { CalendarPage } from "@/features/calendar";
 import { UserProfilesPage } from "@/features/user-profile";
 import { FormElementsPage } from "@/features/forms";
@@ -28,6 +31,12 @@ export const AppRouter: React.FC = () => {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route index path="/" element={<EcommerceDashboardPage />} />
+
+          {/* E-Commerce Core Routes */}
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/create" element={<CreateProductPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
 
           {/* User Profile */}
           <Route path="/profile" element={<UserProfilesPage />} />

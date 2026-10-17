@@ -11,9 +11,9 @@
   },
   "sidebar": {
     "groups": {
-      "menu": "Menu",
-      "support": "Support",
-      "others": "Others"
+      "menu": "Main Menu",
+      "account": "Account & Settings",
+      "others": "UI Elements Demo"
     },
     "badges": {
       "new": "new",
@@ -120,7 +120,10 @@
       "supportReply": "Ticket Reply",
       "email": "Email",
       "inbox": "Inbox",
-      "inboxDetails": "Details"
+      "inboxDetails": "Details",
+      "orders": "Orders",
+      "categories": "Categories",
+      "productList": "Product List"
     },
     "widget": {
       "title": "#1 Tailwind CSS Dashboard",

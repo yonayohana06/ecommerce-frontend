@@ -12,8 +12,8 @@
   "sidebar": {
     "groups": {
       "menu": "Menu Utama",
-      "support": "Bantuan",
-      "others": "Lainnya"
+      "account": "Akun & Pengaturan",
+      "others": "Demo Elemen UI"
     },
     "badges": {
       "new": "new",
@@ -122,7 +122,8 @@
       "inbox": "Inbox",
       "inboxDetails": "Details",
       "categories": "Kategori",
-      "orders": "Pesanan"
+      "orders": "Pesanan",
+      "productList": "Daftar Produk"
     },
     "widget": {
       "title": "#1 Tailwind CSS Dashboard",

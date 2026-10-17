@@ -4,19 +4,15 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 import {
   BoxCubeIcon,
-  CalenderIcon,
   ChevronDownIcon,
   GridIcon,
   HorizontaLDots,
   ListIcon,
-  PageIcon,
-  PieChartIcon,
   PlugInIcon,
-  TableIcon,
+  TruckDelivery,
   UserCircleIcon,
 } from "../icons";
 import { cn } from "../utils";
-import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
   name: string;
@@ -35,89 +31,65 @@ type NavItem = {
   }[];
 };
 
-const navItems: NavItem[] = [
+type MenuType = "main" | "account" | "others";
+
+// 1. Menu Utama (Operasional Inti E-Commerce)
+const mainNavItems: NavItem[] = [
   {
     icon: <GridIcon fontSize={24} />,
     name: "Dashboard",
     key: "dashboard",
-    subItems: [{ name: "Ecommerce", key: "ecommerceHome", path: "/" }],
+    path: "/",
   },
   {
-    icon: <CalenderIcon fontSize={24} />,
-    name: "Calendar",
-    key: "calendar",
-    path: "/calendar",
+    icon: <TruckDelivery className="size-6" />,
+    name: "Orders",
+    key: "orders",
+    path: "/orders",
   },
+  {
+    icon: <BoxCubeIcon fontSize={24} />,
+    name: "Products",
+    key: "products",
+    subItems: [
+      { name: "Product List", key: "productList", path: "/products" },
+      { name: "Add Product", key: "addProduct", path: "/products/create" },
+    ],
+  },
+  {
+    icon: <ListIcon fontSize={24} />,
+    name: "Categories",
+    key: "categories",
+    path: "/categories",
+  },
+];
+
+// 2. Akun & Pengaturan
+const accountNavItems: NavItem[] = [
   {
     icon: <UserCircleIcon fontSize={24} />,
     name: "User Profile",
     key: "userProfile",
     path: "/profile",
   },
-  {
-    name: "Forms",
-    key: "forms",
-    icon: <ListIcon fontSize={24} />,
-    subItems: [
-      {
-        name: "Form Elements",
-        key: "formElements",
-        path: "/form-elements",
-        pro: false,
-      },
-    ],
-  },
-  {
-    name: "Tables",
-    key: "tables",
-    icon: <TableIcon fontSize={24} />,
-    subItems: [
-      {
-        name: "Basic Tables",
-        key: "basicTables",
-        path: "/basic-tables",
-        pro: false,
-      },
-    ],
-  },
-  {
-    name: "Pages",
-    key: "pages",
-    icon: <PageIcon fontSize={24} />,
-    subItems: [{ name: "Blank Page", key: "blankPage", path: "/blank" }],
-  },
 ];
 
-const othersItems: NavItem[] = [
+// 3. Demo / Elemen UI
+const othersNavItems: NavItem[] = [
   {
-    icon: <PieChartIcon fontSize={24} />,
-    name: "Charts",
-    key: "charts",
-    subItems: [
-      { name: "Line Chart", key: "lineChart", path: "/line-chart" },
-      { name: "Bar Chart", key: "barChart", path: "/bar-chart" },
-    ],
-  },
-  {
-    icon: <BoxCubeIcon fontSize={24} />,
+    icon: <PlugInIcon fontSize={24} />,
     name: "UI Elements",
     key: "uiElements",
     subItems: [
-      { name: "Alerts", key: "alerts", path: "/alerts", pro: false },
-      { name: "Avatar", key: "avatar", path: "/avatars", pro: false },
-      { name: "Badge", key: "badge", path: "/badge", pro: false },
-      { name: "Buttons", key: "buttons", path: "/buttons", pro: false },
-      { name: "Images", key: "images", path: "/images", pro: false },
-      { name: "Videos", key: "videos", path: "/videos", pro: false },
-    ],
-  },
-  {
-    icon: <PlugInIcon fontSize={24} />,
-    name: "Authentication",
-    key: "authentication",
-    subItems: [
-      { name: "Sign In", key: "signIn", path: "/signin", pro: false },
-      { name: "Sign Up", key: "signUp", path: "/signup", pro: false },
+      { name: "Buttons", key: "buttons", path: "/buttons" },
+      { name: "Alerts", key: "alerts", path: "/alerts" },
+      { name: "Badges", key: "badge", path: "/badge" },
+      { name: "Avatars", key: "avatar", path: "/avatars" },
+      { name: "Basic Tables", key: "basicTables", path: "/basic-tables" },
+      { name: "Form Elements", key: "formElements", path: "/form-elements" },
+      { name: "Line Chart", key: "lineChart", path: "/line-chart" },
+      { name: "Bar Chart", key: "barChart", path: "/bar-chart" },
+      { name: "Blank Page", key: "blankPage", path: "/blank" },
     ],
   },
 ];
@@ -128,7 +100,7 @@ const AppSidebar: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const [openSubmenu, setOpenSubmenu] = useState<{
-    type: "main" | "others";
+    type: MenuType;
     index: number;
   } | null>(null);
   const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
@@ -144,7 +116,6 @@ const AppSidebar: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  // const isActive = (path: string) => location.pathname === path;
   const isActive = useCallback(
     (path: string) => location.pathname === path,
     [location.pathname],
@@ -153,15 +124,19 @@ const AppSidebar: React.FC = () => {
   useEffect(() => {
     let submenuMatched = false;
 
-    ["main", "others"].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+    const sections: { type: MenuType; items: NavItem[] }[] = [
+      { type: "main", items: mainNavItems },
+      { type: "account", items: accountNavItems },
+      { type: "others", items: othersNavItems },
+    ];
 
+    sections.forEach(({ type, items }) => {
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
             if (isActive(subItem.path)) {
               setOpenSubmenu({
-                type: menuType as "main" | "others",
+                type,
                 index,
               });
               submenuMatched = true;
@@ -172,7 +147,6 @@ const AppSidebar: React.FC = () => {
     });
 
     if (!submenuMatched) {
-      // setOpenSubmenu(null);
       setTimeout(() => {
         setOpenSubmenu(null);
       }, 0);
@@ -191,7 +165,7 @@ const AppSidebar: React.FC = () => {
     }
   }, [openSubmenu]);
 
-  const handleSubmenuToggle = (index: number, menuType: "main" | "others") => {
+  const handleSubmenuToggle = (index: number, menuType: MenuType) => {
     setOpenSubmenu((prevOpenSubmenu) => {
       if (
         prevOpenSubmenu &&
@@ -204,26 +178,29 @@ const AppSidebar: React.FC = () => {
     });
   };
 
-  const renderMenuItems = (items: NavItem[], menuType: "main" | "others") => (
+  const renderMenuItems = (items: NavItem[], menuType: MenuType) => (
     <ul className="flex flex-col gap-1">
       {items.map((nav, index) => (
         <li key={nav.name}>
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
-              className={`group menu-item ${openSubmenu?.type === menuType && openSubmenu?.index === index
-                ? "menu-item-active"
-                : "menu-item-inactive"
-                } cursor-pointer ${!isExpanded && !isHovered
+              className={`group menu-item ${
+                openSubmenu?.type === menuType && openSubmenu?.index === index
+                  ? "menu-item-active"
+                  : "menu-item-inactive"
+              } cursor-pointer ${
+                !isExpanded && !isHovered
                   ? "xl:justify-center"
                   : "xl:justify-start"
-                }`}
+              }`}
             >
               <span
-                className={`menu-item-icon-size ${openSubmenu?.type === menuType && openSubmenu?.index === index
-                  ? "menu-item-icon-active"
-                  : "menu-item-icon-inactive"
-                  }`}
+                className={`menu-item-icon-size ${
+                  openSubmenu?.type === menuType && openSubmenu?.index === index
+                    ? "menu-item-icon-active"
+                    : "menu-item-icon-inactive"
+                }`}
               >
                 {nav.icon}
               </span>
@@ -235,22 +212,24 @@ const AppSidebar: React.FC = () => {
               )}
               {nav.new && (isExpanded || isHovered || isMobileOpen) && (
                 <span
-                  className={`absolute inset-e-10 ms-auto ${openSubmenu?.type === menuType &&
+                  className={`absolute inset-e-10 ms-auto ${
+                    openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
-                    ? "menu-dropdown-badge-active"
-                    : "menu-dropdown-badge-inactive"
-                    } menu-dropdown-badge`}
+                      ? "menu-dropdown-badge-active"
+                      : "menu-dropdown-badge-inactive"
+                  } menu-dropdown-badge`}
                 >
                   {t("sidebar.badges.new")}
                 </span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
                 <ChevronDownIcon
-                  className={`ms-auto h-5 w-5 transition-transform duration-200 ${openSubmenu?.type === menuType &&
+                  className={`ms-auto h-5 w-5 transition-transform duration-200 ${
+                    openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
-                    ? "rotate-180 text-brand-500"
-                    : ""
-                    }`}
+                      ? "rotate-180 text-brand-500"
+                      : ""
+                  }`}
                 />
               )}
             </button>
@@ -259,14 +238,16 @@ const AppSidebar: React.FC = () => {
               <Link
                 to={nav.path}
                 target={nav.target}
-                className={`group menu-item ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
-                  }`}
+                className={`group menu-item ${
+                  isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
+                }`}
               >
                 <span
-                  className={`menu-item-icon-size ${isActive(nav.path)
-                    ? "menu-item-icon-active"
-                    : "menu-item-icon-inactive"
-                    }`}
+                  className={`menu-item-icon-size ${
+                    isActive(nav.path)
+                      ? "menu-item-icon-active"
+                      : "menu-item-icon-inactive"
+                  }`}
                 >
                   {nav.icon}
                 </span>
@@ -297,10 +278,11 @@ const AppSidebar: React.FC = () => {
                     <Link
                       to={subItem.path}
                       target={subItem.target}
-                      className={`menu-dropdown-item ${isActive(subItem.path)
-                        ? "menu-dropdown-item-active"
-                        : "menu-dropdown-item-inactive"
-                        }`}
+                      className={`menu-dropdown-item ${
+                        isActive(subItem.path)
+                          ? "menu-dropdown-item-active"
+                          : "menu-dropdown-item-inactive"
+                      }`}
                     >
                       {subItem.key
                         ? t(`sidebar.items.${subItem.key}`)
@@ -308,20 +290,22 @@ const AppSidebar: React.FC = () => {
                       <span className="ms-auto flex items-center gap-1">
                         {subItem.new && (
                           <span
-                            className={`ms-auto ${isActive(subItem.path)
-                              ? "menu-dropdown-badge-active"
-                              : "menu-dropdown-badge-inactive"
-                              } menu-dropdown-badge`}
+                            className={`ms-auto ${
+                              isActive(subItem.path)
+                                ? "menu-dropdown-badge-active"
+                                : "menu-dropdown-badge-inactive"
+                            } menu-dropdown-badge`}
                           >
                             {t("sidebar.badges.new")}
                           </span>
                         )}
                         {subItem.pro && (
                           <span
-                            className={`ms-auto ${isActive(subItem.path)
-                              ? "menu-dropdown-badge-pro-active"
-                              : "menu-dropdown-badge-pro-inactive"
-                              } menu-dropdown-badge-pro`}
+                            className={`ms-auto ${
+                              isActive(subItem.path)
+                                ? "menu-dropdown-badge-pro-active"
+                                : "menu-dropdown-badge-pro-inactive"
+                            } menu-dropdown-badge-pro`}
                           >
                             {t("sidebar.badges.pro")}
                           </span>
@@ -387,13 +371,15 @@ const AppSidebar: React.FC = () => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="mb-6">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
+            {/* Section 1: Menu Utama / Main Menu */}
             <div>
               <h2
-                className={`mb-4 flex text-xs leading-5 text-gray-400 uppercase ${!isExpanded && !isHovered
-                  ? "xl:justify-center"
-                  : "justify-start"
-                  }`}
+                className={`mb-3 flex text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500 ${
+                  !isExpanded && !isHovered
+                    ? "xl:justify-center"
+                    : "justify-start"
+                }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
                   t("sidebar.groups.menu")
@@ -401,15 +387,35 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots className="size-6" />
                 )}
               </h2>
-              {renderMenuItems(navItems, "main")}
+              {renderMenuItems(mainNavItems, "main")}
             </div>
 
+            {/* Section 2: Akun & Pengaturan / Account & Settings */}
             <div>
               <h2
-                className={`mb-4 flex text-xs leading-5 text-gray-400 uppercase ${!isExpanded && !isHovered
-                  ? "xl:justify-center"
-                  : "justify-start"
-                  }`}
+                className={`mb-3 flex text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500 ${
+                  !isExpanded && !isHovered
+                    ? "xl:justify-center"
+                    : "justify-start"
+                }`}
+              >
+                {isExpanded || isHovered || isMobileOpen ? (
+                  t("sidebar.groups.account")
+                ) : (
+                  <HorizontaLDots className="size-6" />
+                )}
+              </h2>
+              {renderMenuItems(accountNavItems, "account")}
+            </div>
+
+            {/* Section 3: Demo / Elemen UI */}
+            <div>
+              <h2
+                className={`mb-3 flex text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500 ${
+                  !isExpanded && !isHovered
+                    ? "xl:justify-center"
+                    : "justify-start"
+                }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
                   t("sidebar.groups.others")
@@ -417,12 +423,10 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots className="size-6" />
                 )}
               </h2>
-              {renderMenuItems(othersItems, "others")}
+              {renderMenuItems(othersNavItems, "others")}
             </div>
           </div>
         </nav>
-
-        {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
       </div>
     </aside>
   );
