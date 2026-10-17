@@ -228,7 +228,7 @@
       "title": "Order Status",
       "subtitle": "Distribution of all current transaction statuses",
       "totalOrders": "Total Orders",
-      "orderCount": "{{count}} orders",
+      "orderCount": "{count} orders",
       "noData": "No transaction data yet",
       "labels": {
         "paid": "Paid",
@@ -958,6 +958,72 @@
       "successTitle": "Success",
       "successMessage": "Account created successfully! Redirecting to sign in...",
       "defaultError": "Registration failed. Please try again."
+    }
+  },
+  "categories": {
+    "title": "Product Categories",
+    "subtitle": "Manage taxonomy, storefront structure, and category icons",
+    "meta": {
+      "title": "Categories | FastShop Admin",
+      "description": "Manage catalog taxonomy and product categories for your store"
+    },
+    "actions": {
+      "addCategory": "Add Category",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "deleting": "Deleting...",
+      "confirmDelete": "Delete Category"
+    },
+    "search": {
+      "placeholder": "Search categories and press Enter...",
+      "resetSearch": "Reset Search",
+      "searching": "Searching..."
+    },
+    "table": {
+      "columns": {
+        "category": "Category",
+        "slug": "Slug",
+        "productCount": "Products",
+        "createdAt": "Created At",
+        "actions": "Actions"
+      },
+      "empty": "No categories found.",
+      "emptySearch": "No categories matching \"{keyword}\".",
+      "productCount": "{count} products",
+      "showingCount": "Showing {count} categories",
+      "noIcon": "No Icon"
+    },
+    "form": {
+      "createTitle": "Add New Category",
+      "editTitle": "Edit Category",
+      "nameLabel": "Category Name",
+      "namePlaceholder": "e.g. Shoes & Sportswear",
+      "slugLabel": "URL Slug",
+      "slugPlaceholder": "shoes-sportswear",
+      "slugHint": "Slug is automatically generated from name and used for URL routing.",
+      "iconUrlLabel": "Icon URL (Optional)",
+      "iconUrlPlaceholder": "https://example.com/icons/category.png",
+      "iconUrlHint": "Public image link or SVG icon for storefront display.",
+      "validation": {
+        "nameRequired": "Category name is required."
+      }
+    },
+    "deleteModal": {
+      "title": "Delete Category",
+      "warning": "Are you sure you want to delete category \"{name}\"?",
+      "affectedProductsWarning": "Warning: There are {count} products currently assigned to this category. Deleting this category may detach them.",
+      "irreversible": "This action cannot be undone."
+    },
+    "notifications": {
+      "createSuccess": "Category \"{name}\" added successfully.",
+      "updateSuccess": "Category \"{name}\" updated successfully.",
+      "deleteSuccess": "Category \"{name}\" deleted successfully.",
+      "loadError": "Failed to load categories. Please reload the page.",
+      "saveError": "Failed to save category. Please check your input.",
+      "deleteError": "Failed to delete category."
     }
   }
 }

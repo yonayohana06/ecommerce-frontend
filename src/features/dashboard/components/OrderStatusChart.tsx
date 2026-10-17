@@ -100,7 +100,7 @@ export default function OrderStatusChart() {
       theme: "light",
       y: {
         formatter: (val: number) =>
-          t("ecommerce.orderStatus.orderCount", "{{count}} pesanan", {
+          t("ecommerce.orderStatus.orderCount", "{count} pesanan", {
             count: val,
           }),
       },

@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import { cn } from "@/utils";
 
 interface ButtonProps {
-  children: ReactNode;
+  children?: ReactNode;
   size?: "sm" | "md";
   variant?: "primary" | "outline";
   type?: "button" | "submit" | "reset";
@@ -10,6 +11,8 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
+  title?: string;
+  "aria-label"?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +25,8 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   disabled = false,
+  title,
+  "aria-label": ariaLabel,
 }) => {
   const sizeClasses = {
     sm: "px-4 py-3 text-sm",
@@ -38,13 +43,17 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={type}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg font-medium transition ${className} ${
-        sizeClasses[size]
-      } ${variantClasses[variant]} ${
-        disabled ? "cursor-not-allowed opacity-50" : ""
-      }`}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition",
+        sizeClasses[size],
+        variantClasses[variant],
+        disabled && "cursor-not-allowed opacity-50",
+        className,
+      )}
       onClick={onClick}
       disabled={disabled}
+      title={title}
+      aria-label={ariaLabel || title}
     >
       {startIcon && <span className="flex items-center">{startIcon}</span>}
       {children}

@@ -230,7 +230,7 @@
       "title": "Status Pesanan",
       "subtitle": "Distribusi seluruh status transaksi saat ini",
       "totalOrders": "Total Pesanan",
-      "orderCount": "{{count}} pesanan",
+      "orderCount": "{count} pesanan",
       "noData": "Belum ada data transaksi",
       "labels": {
         "paid": "Lunas (Paid)",
@@ -960,6 +960,72 @@
       "successTitle": "Berhasil",
       "successMessage": "Akun berhasil dibuat! Mengalihkan ke halaman masuk...",
       "defaultError": "Pendaftaran gagal. Silakan coba lagi."
+    }
+  },
+  "categories": {
+    "title": "Kategori Produk",
+    "subtitle": "Kelola taksonomi, struktur etalase, dan ikon kategori produk",
+    "meta": {
+      "title": "Kategori Produk | FastShop Admin",
+      "description": "Kelola taksonomi dan kategori katalog produk toko Anda"
+    },
+    "actions": {
+      "addCategory": "Tambah Kategori",
+      "edit": "Ubah",
+      "delete": "Hapus",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "saving": "Menyimpan...",
+      "deleting": "Menghapus...",
+      "confirmDelete": "Hapus Kategori"
+    },
+    "search": {
+      "placeholder": "Cari kategori lalu tekan Enter...",
+      "resetSearch": "Reset Pencarian",
+      "searching": "Mencari..."
+    },
+    "table": {
+      "columns": {
+        "category": "Kategori",
+        "slug": "Slug",
+        "productCount": "Jumlah Produk",
+        "createdAt": "Dibuat Pada",
+        "actions": "Aksi"
+      },
+      "empty": "Belum ada kategori yang ditemukan.",
+      "emptySearch": "Tidak ada kategori yang cocok dengan pencarian \"{keyword}\".",
+      "productCount": "{count} produk",
+      "showingCount": "Menampilkan {count} kategori",
+      "noIcon": "Tanpa Ikon"
+    },
+    "form": {
+      "createTitle": "Tambah Kategori Baru",
+      "editTitle": "Ubah Kategori",
+      "nameLabel": "Nama Kategori",
+      "namePlaceholder": "Contoh: Sepatu & Olahraga",
+      "slugLabel": "Slug URL",
+      "slugPlaceholder": "sepatu-olahraga",
+      "slugHint": "Slug dibuat otomatis dari nama kategori dan digunakan untuk identifikasi URL.",
+      "iconUrlLabel": "URL Ikon (Opsional)",
+      "iconUrlPlaceholder": "https://example.com/icons/category.png",
+      "iconUrlHint": "Tautan gambar icon atau SVG untuk etalase aplikasi.",
+      "validation": {
+        "nameRequired": "Nama kategori wajib diisi."
+      }
+    },
+    "deleteModal": {
+      "title": "Hapus Kategori",
+      "warning": "Apakah Anda yakin ingin menghapus kategori \"{name}\"?",
+      "affectedProductsWarning": "Perhatian: Ada {count} produk yang saat ini berada di dalam kategori ini. Menghapus kategori dapat melepaskan relasi produk tersebut.",
+      "irreversible": "Tindakan ini tidak dapat dibatalkan."
+    },
+    "notifications": {
+      "createSuccess": "Kategori \"{name}\" berhasil ditambahkan.",
+      "updateSuccess": "Kategori \"{name}\" berhasil diperbarui.",
+      "deleteSuccess": "Kategori \"{name}\" berhasil dihapus.",
+      "loadError": "Gagal memuat daftar kategori. Silakan muat ulang halaman.",
+      "saveError": "Gagal menyimpan kategori. Silakan periksa data input Anda.",
+      "deleteError": "Gagal menghapus kategori."
     }
   }
 }
