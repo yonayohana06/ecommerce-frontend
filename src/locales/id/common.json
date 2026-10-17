@@ -155,8 +155,16 @@
   "ecommerce": {
     "title": "E-commerce Dashboard",
     "metrics": {
-      "customers": "Customers",
-      "orders": "Orders"
+      "customers": "Pelanggan",
+      "orders": "Pesanan",
+      "totalRevenue": "Total Pendapatan",
+      "totalOrders": "Total Pesanan",
+      "completedOrders": "Pesanan Lunas",
+      "pendingOrders": "Perlu Diproses",
+      "revenueBadge": "IDR",
+      "allBadge": "Semua",
+      "paidBadge": "Lunas",
+      "pendingBadge": "Pending"
     },
     "months": {
       "jan": "Jan",
@@ -195,24 +203,52 @@
       "selectDateRange": "Select date range"
     },
     "recentOrders": {
-      "title": "Recent Orders",
-      "products": "Products",
-      "category": "Category",
-      "price": "Price",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variant} other {# Variants}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Watch",
-        "smartphone": "SmartPhone",
-        "electronics": "Electronics",
-        "accessories": "Accessories"
+      "title": "Pesanan Terbaru",
+      "subtitle": "5 transaksi pesanan terakhir yang masuk",
+      "seeAll": "Lihat Semua",
+      "columns": {
+        "orderId": "No. Pesanan",
+        "customer": "Pelanggan",
+        "total": "Total",
+        "status": "Status",
+        "date": "Tanggal"
       },
+      "empty": "Belum ada pesanan terbaru.",
+      "error": "Gagal memuat pesanan terbaru.",
+      "customerFallback": "Pelanggan",
       "statuses": {
-        "delivered": "Delivered",
-        "pending": "Pending",
-        "canceled": "Canceled"
+        "paid": "Lunas",
+        "completed": "Selesai",
+        "processing": "Diproses",
+        "shipped": "Dikirim",
+        "pending": "Menunggu",
+        "cancelled": "Dibatalkan",
+        "failed": "Gagal"
       }
+    },
+    "orderStatus": {
+      "title": "Status Pesanan",
+      "subtitle": "Distribusi seluruh status transaksi saat ini",
+      "totalOrders": "Total Pesanan",
+      "orderCount": "{{count}} pesanan",
+      "noData": "Belum ada data transaksi",
+      "labels": {
+        "paid": "Lunas (Paid)",
+        "processing": "Diproses",
+        "pending": "Menunggu",
+        "shipped": "Dikirim",
+        "cancelled": "Dibatalkan"
+      }
+    },
+    "quickActions": {
+      "title": "Aksi Cepat",
+      "subtitle": "Pintasan operasional toko yang sering digunakan",
+      "addProduct": "Tambah Produk",
+      "addProductDesc": "Input katalog produk dan stok baru",
+      "manageOrders": "Kelola Pesanan",
+      "manageOrdersDesc": "Cek pembayaran & update pengiriman",
+      "productCategories": "Kategori Produk",
+      "productCategoriesDesc": "Atur struktur kategori etalase toko"
     },
     "demographic": {
       "title": "Customers Demographic",

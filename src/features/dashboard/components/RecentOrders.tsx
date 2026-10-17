@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-import { SliderHorizontalIcon } from "@/icons";
 import Badge from "@/components/ui/badge/Badge";
 import {
   Table,
@@ -8,106 +9,65 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-// Define the TypeScript interface for the table rows
-interface Product {
-  id: number;
-  name: string;
-  variantsCount: number;
-  categoryKey:
-    "laptop" | "watch" | "smartphone" | "electronics" | "accessories";
-  price: string;
-  image: string;
-  statusKey: "delivered" | "pending" | "canceled";
-}
-
-// Define the table data using the interface
-const tableData: Product[] = [
-  {
-    id: 1,
-    name: "MacBook Pro 13”",
-    variantsCount: 2,
-    categoryKey: "laptop",
-    price: "$2399.00",
-    statusKey: "delivered",
-    image: "/images/product/product-01.jpg",
-  },
-  {
-    id: 2,
-    name: "Apple Watch Ultra",
-    variantsCount: 1,
-    categoryKey: "watch",
-    price: "$879.00",
-    statusKey: "pending",
-    image: "/images/product/product-02.jpg",
-  },
-  {
-    id: 3,
-    name: "iPhone 15 Pro Max",
-    variantsCount: 2,
-    categoryKey: "smartphone",
-    price: "$1869.00",
-    statusKey: "delivered",
-    image: "/images/product/product-03.jpg",
-  },
-  {
-    id: 4,
-    name: "iPad Pro 3rd Gen",
-    variantsCount: 2,
-    categoryKey: "electronics",
-    price: "$1699.00",
-    statusKey: "canceled",
-    image: "/images/product/product-04.jpg",
-  },
-  {
-    id: 5,
-    name: "AirPods Pro 2nd Gen",
-    variantsCount: 1,
-    categoryKey: "accessories",
-    price: "$240.00",
-    statusKey: "delivered",
-    image: "/images/product/product-05.jpg",
-  },
-];
-
-function formatVariants(template: string, count: number): string {
-  const pluralMatch = template.match(/\{count,\s*plural,\s*(.+)\}/);
-  if (!pluralMatch) return template.replace(/\{count\}/g, String(count));
-  const rules = pluralMatch[1];
-  const map: Record<string, string> = {};
-  const regex = /(\w+)\s*\{([^}]*)\}/g;
-  let m;
-  while ((m = regex.exec(rules)) !== null) {
-    map[m[1]] = m[2];
-  }
-  let result = map.other || "";
-  if (count === 1 && map.one) {
-    result = map.one;
-  } else if (count === 2 && map.two) {
-    result = map.two;
-  } else if (count >= 3 && count <= 10 && map.few) {
-    result = map.few;
-  } else if (map.many && count > 10) {
-    result = map.many;
-  }
-  return result
-    .replace(/#/g, String(count))
-    .replace(/\{count\}/g, String(count));
-}
+import { formatDate, formatRupiah } from "@/utils";
+import dashboardService from "../api/dashboardService";
+import type { OrderStatus, RecentOrderItem } from "../types";
 
 export default function RecentOrders() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [orders, setOrders] = useState<RecentOrderItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const getBadgeColor = (status: Product["statusKey"]) => {
+  const dateLocale = i18n.language === "en" ? "en-US" : "id-ID";
+
+  useEffect(() => {
+    let isMounted = true;
+
+    dashboardService
+      .getRecentOrders(5)
+      .then((res) => {
+        if (isMounted) {
+          setOrders(res.data || []);
+          setError(null);
+          setIsLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (isMounted) {
+          const msg =
+            err instanceof Error
+              ? err.message
+              : t("ecommerce.recentOrders.error", "Gagal memuat pesanan terbaru.");
+          setError(msg);
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [t]);
+
+  const getStatusBadge = (status: OrderStatus) => {
+    const statusKey = status.toLowerCase();
+    const label = t(`ecommerce.recentOrders.statuses.${statusKey}`, status);
+
     switch (status) {
-      case "delivered":
-        return "success";
-      case "pending":
-        return "warning";
-      case "canceled":
-        return "error";
+      case "PAID":
+      case "COMPLETED":
+        return <Badge size="sm" color="success">{label}</Badge>;
+      case "PROCESSING":
+        return <Badge size="sm" color="info">{label}</Badge>;
+      case "SHIPPED":
+        return <Badge size="sm" color="primary">{label}</Badge>;
+      case "PENDING":
+        return <Badge size="sm" color="warning">{label}</Badge>;
+      case "CANCELLED":
+      case "FAILED":
+        return <Badge size="sm" color="error">{label}</Badge>;
       default:
-        return "primary";
+        return <Badge size="sm" color="light">{label}</Badge>;
     }
   };
 
@@ -116,93 +76,138 @@ export default function RecentOrders() {
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-            {t("ecommerce.recentOrders.title")}
+            {t("ecommerce.recentOrders.title", "Pesanan Terbaru")}
           </h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {t(
+              "ecommerce.recentOrders.subtitle",
+              "5 transaksi pesanan terakhir yang masuk",
+            )}
+          </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200">
-            <SliderHorizontalIcon className="size-5" />
-            {t("common.filter")}
-          </button>
-          <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200">
-            {t("common.seeAll")}
-          </button>
-        </div>
+        <Link
+          to="/orders"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200"
+        >
+          {t("common.seeAll", "Lihat Semua")}
+        </Link>
       </div>
+
       <div className="max-w-full overflow-x-auto">
         <Table>
-          {/* Table Header */}
           <TableHeader className="border-y border-gray-100 dark:border-gray-800">
             <TableRow>
               <TableCell
                 isHeader
                 className="py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
               >
-                {t("ecommerce.recentOrders.products")}
+                {t("ecommerce.recentOrders.columns.orderId", "No. Pesanan")}
               </TableCell>
               <TableCell
                 isHeader
                 className="py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
               >
-                {t("ecommerce.recentOrders.category")}
+                {t("ecommerce.recentOrders.columns.customer", "Pelanggan")}
               </TableCell>
               <TableCell
                 isHeader
                 className="py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
               >
-                {t("ecommerce.recentOrders.price")}
+                {t("ecommerce.recentOrders.columns.total", "Total")}
               </TableCell>
               <TableCell
                 isHeader
                 className="py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
               >
-                {t("ecommerce.recentOrders.status")}
+                {t("ecommerce.recentOrders.columns.status", "Status")}
+              </TableCell>
+              <TableCell
+                isHeader
+                className="py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+              >
+                {t("ecommerce.recentOrders.columns.date", "Tanggal")}
               </TableCell>
             </TableRow>
           </TableHeader>
 
-          {/* Table Body */}
           <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
-            {tableData.map((product) => (
-              <TableRow key={product.id} className="">
-                <TableCell className="py-3">
-                  <div className="flex items-center gap-3">
-                    <div className="h-12.5 w-12.5 overflow-hidden rounded-md">
-                      <img
-                        src={product.image}
-                        className="h-12.5 w-12.5"
-                        alt={product.name}
-                      />
+            {isLoading ? (
+              [1, 2, 3].map((i) => (
+                <TableRow key={i} className="animate-pulse">
+                  <TableCell className="py-3.5">
+                    <div className="h-4 w-12 rounded bg-gray-200 dark:bg-gray-800" />
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    <div className="space-y-1">
+                      <div className="h-4 w-28 rounded bg-gray-200 dark:bg-gray-800" />
+                      <div className="h-3 w-36 rounded bg-gray-200 dark:bg-gray-800" />
                     </div>
-                    <div>
-                      <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                        {product.name}
-                      </p>
-                      <span className="text-theme-xs text-gray-500 dark:text-gray-400">
-                        {formatVariants(
-                          t("ecommerce.recentOrders.variants"),
-                          product.variantsCount,
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                  {t(
-                    `ecommerce.recentOrders.categories.${product.categoryKey}`,
-                  )}
-                </TableCell>
-                <TableCell className="py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                  {product.price}
-                </TableCell>
-                <TableCell className="py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                  <Badge size="sm" color={getBadgeColor(product.statusKey)}>
-                    {t(`ecommerce.recentOrders.statuses.${product.statusKey}`)}
-                  </Badge>
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    <div className="h-4 w-20 rounded bg-gray-200 dark:bg-gray-800" />
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    <div className="h-5 w-16 rounded-full bg-gray-200 dark:bg-gray-800" />
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    <div className="h-4 w-24 rounded bg-gray-200 dark:bg-gray-800" />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : error ? (
+              <TableRow>
+                <TableCell
+                  className="py-6 text-center text-sm text-error-500"
+                  colSpan={5}
+                >
+                  {error}
                 </TableCell>
               </TableRow>
-            ))}
+            ) : orders.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  className="py-6 text-center text-sm text-gray-500 dark:text-gray-400"
+                  colSpan={5}
+                >
+                  {t(
+                    "ecommerce.recentOrders.empty",
+                    "Belum ada pesanan terbaru.",
+                  )}
+                </TableCell>
+              </TableRow>
+            ) : (
+              orders.map((order) => (
+                <TableRow key={order.order_id} className="hover:bg-gray-50/50 dark:hover:bg-white/2">
+                  <TableCell className="py-3.5 text-theme-sm font-semibold text-brand-500">
+                    #{order.order_id}
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    <div>
+                      <p className="text-theme-sm font-medium text-gray-800 dark:text-white/90">
+                        {order.user_name ||
+                          t(
+                            "ecommerce.recentOrders.customerFallback",
+                            "Pelanggan",
+                          )}
+                      </p>
+                      <span className="text-theme-xs text-gray-500 dark:text-gray-400">
+                        {order.email}
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-3.5 text-theme-sm font-semibold text-gray-800 dark:text-white/90">
+                    {formatRupiah(order.total_amount)}
+                  </TableCell>
+                  <TableCell className="py-3.5">
+                    {getStatusBadge(order.status)}
+                  </TableCell>
+                  <TableCell className="py-3.5 text-theme-xs text-gray-500 dark:text-gray-400">
+                    {formatDate(order.created_at, dateLocale)}
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>

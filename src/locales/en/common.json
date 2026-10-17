@@ -154,7 +154,15 @@
     "title": "E-commerce Dashboard",
     "metrics": {
       "customers": "Customers",
-      "orders": "Orders"
+      "orders": "Orders",
+      "totalRevenue": "Total Revenue",
+      "totalOrders": "Total Orders",
+      "completedOrders": "Paid Orders",
+      "pendingOrders": "Needs Processing",
+      "revenueBadge": "IDR",
+      "allBadge": "All",
+      "paidBadge": "Paid",
+      "pendingBadge": "Pending"
     },
     "months": {
       "jan": "Jan",
@@ -194,23 +202,51 @@
     },
     "recentOrders": {
       "title": "Recent Orders",
-      "products": "Products",
-      "category": "Category",
-      "price": "Price",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variant} other {# Variants}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Watch",
-        "smartphone": "SmartPhone",
-        "electronics": "Electronics",
-        "accessories": "Accessories"
+      "subtitle": "Latest 5 incoming order transactions",
+      "seeAll": "View All",
+      "columns": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "total": "Total",
+        "status": "Status",
+        "date": "Date"
       },
+      "empty": "No recent orders yet.",
+      "error": "Failed to load recent orders.",
+      "customerFallback": "Customer",
       "statuses": {
-        "delivered": "Delivered",
+        "paid": "Paid",
+        "completed": "Completed",
+        "processing": "Processing",
+        "shipped": "Shipped",
         "pending": "Pending",
-        "canceled": "Canceled"
+        "cancelled": "Cancelled",
+        "failed": "Failed"
       }
+    },
+    "orderStatus": {
+      "title": "Order Status",
+      "subtitle": "Distribution of all current transaction statuses",
+      "totalOrders": "Total Orders",
+      "orderCount": "{{count}} orders",
+      "noData": "No transaction data yet",
+      "labels": {
+        "paid": "Paid",
+        "processing": "Processing",
+        "pending": "Pending",
+        "shipped": "Shipped",
+        "cancelled": "Cancelled"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "subtitle": "Frequently used store operations",
+      "addProduct": "Add Product",
+      "addProductDesc": "Input product catalog and new stock",
+      "manageOrders": "Manage Orders",
+      "manageOrdersDesc": "Check payments & update shipping",
+      "productCategories": "Product Categories",
+      "productCategoriesDesc": "Organize store showcase category structure"
     },
     "demographic": {
       "title": "Customers Demographic",
