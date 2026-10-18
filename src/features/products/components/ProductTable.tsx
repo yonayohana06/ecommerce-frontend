@@ -300,7 +300,7 @@ export default function ProductTable({
                       <button
                         type="button"
                         onClick={() => onView(product)}
-                        className="inline-flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-brand-400 transition-colors"
+                        className="inline-flex size-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-theme-xs hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-brand-700 dark:hover:bg-brand-500/10 dark:hover:text-brand-400 transition"
                         title={t("products.actions.viewDetail", "Lihat Detail")}
                         aria-label={t("products.actions.viewDetail", "Lihat Detail")}
                       >
@@ -310,7 +310,7 @@ export default function ProductTable({
                     <button
                       type="button"
                       onClick={() => onEdit(product)}
-                      className="inline-flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-brand-400 transition-colors"
+                      className="inline-flex size-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-theme-xs hover:border-brand-300 hover:bg-brand-50 hover:text-brand-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-brand-700 dark:hover:bg-brand-500/10 dark:hover:text-brand-400 transition"
                       title={t("products.actions.edit", "Ubah Produk")}
                       aria-label={t("products.actions.edit", "Ubah Produk")}
                     >
@@ -319,7 +319,7 @@ export default function ProductTable({
                     <button
                       type="button"
                       onClick={() => onDelete(product)}
-                      className="inline-flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-error-50 hover:text-error-600 dark:text-gray-400 dark:hover:bg-error-500/10 dark:hover:text-error-400 transition-colors"
+                      className="inline-flex size-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 shadow-theme-xs hover:border-error-300 hover:bg-error-50 hover:text-error-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-error-700 dark:hover:bg-error-500/10 dark:hover:text-error-400 transition"
                       title={t("products.actions.delete", "Hapus Produk")}
                       aria-label={t("products.actions.delete", "Hapus Produk")}
                     >

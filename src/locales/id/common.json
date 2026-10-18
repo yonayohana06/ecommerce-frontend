@@ -22,7 +22,8 @@
     "next": "Berikutnya",
     "copy": "Salin ID",
     "copied": "Tersalin!",
-    "refresh": "Muat Ulang Data"
+    "refresh": "Muat Ulang Data",
+    "detail": "Detail"
   },
   "sidebar": {
     "groups": {
@@ -1149,6 +1150,97 @@
     },
     "errors": {
       "fetchFailed": "Gagal memuat daftar produk."
+    }
+  },
+  "orders": {
+    "title": "Manajemen Pesanan",
+    "subtitle": "Pantau pesanan masuk, verifikasi bukti pembayaran, dan atur alur pengiriman",
+    "meta": {
+      "title": "Manajemen Pesanan | FastShop Admin",
+      "description": "Kelola pesanan pelanggan, verifikasi bukti transfer, dan pembaruan status transaksi"
+    },
+    "tabs": {
+      "all": "Semua"
+    },
+    "statuses": {
+      "pending": "Menunggu Pembayaran",
+      "processing": "Diproses",
+      "paid": "Sudah Dibayar",
+      "shipped": "Dikirim",
+      "completed": "Selesai",
+      "cancelled": "Dibatalkan",
+      "failed": "Gagal"
+    },
+    "search": {
+      "placeholder": "Cari no pesanan / pelanggan...",
+      "resetFilters": "Reset Pencarian & Filter"
+    },
+    "table": {
+      "columns": {
+        "orderId": "No. Pesanan",
+        "customer": "Pelanggan",
+        "totalAmount": "Total Belanja",
+        "status": "Status",
+        "paymentProof": "Bukti Transfer",
+        "createdAt": "Waktu Transaksi",
+        "actions": "Aksi"
+      },
+      "empty": "Belum ada pesanan yang masuk.",
+      "emptyFiltered": "Tidak ada pesanan yang cocok dengan kriteria filter.",
+      "showingSummary": "Menampilkan {from}-{to} dari {total} pesanan",
+      "pageIndicator": "Hal {current} / {total}"
+    },
+    "paymentProof": {
+      "title": "Bukti Pembayaran",
+      "view": "Lihat Bukti Transfer",
+      "uploaded": "Lihat Bukti",
+      "none": "Belum Diunggah",
+      "notUploaded": "Pelanggan belum mengunggah bukti pembayaran.",
+      "loadError": "Gagal memuat gambar bukti transfer.",
+      "openOriginal": "Buka Gambar Asli",
+      "clickToEnlarge": "Klik untuk Memperbesar",
+      "submittedAt": "Diunggah pada"
+    },
+    "actions": {
+      "viewDetail": "Lihat Detail Pesanan",
+      "updateStatus": "Ubah Status",
+      "backToList": "Kembali ke Daftar Pesanan"
+    },
+    "updateStatus": {
+      "title": "Ubah Status Pesanan",
+      "currentStatus": "Status Saat Ini",
+      "newStatusLabel": "Pilih Status Baru",
+      "submitButton": "Perbarui Status",
+      "updating": "Menyimpan...",
+      "paidNote": "Status 'Sudah Dibayar' menandakan pembayaran telah diverifikasi dan pesanan siap diproses.",
+      "shippedNote": "Status 'Dikirim' menandakan paket telah diserahkan ke jasa ekspedisi pengiriman.",
+      "cancelledNote": "Perhatian: Pembatalan pesanan akan menghentikan proses pemenuhan pesanan.",
+      "completedNote": "Pesanan selesai setelah paket diterima dengan baik oleh pelanggan."
+    },
+    "detail": {
+      "title": "Detail Pesanan",
+      "itemsTitle": "Daftar Produk Dipesan",
+      "itemsDesc": "Rincian item produk yang dibeli pada transaksi ini",
+      "noItems": "Tidak ada item produk dalam pesanan ini.",
+      "subtotal": "Subtotal Produk",
+      "totalAmount": "Total Pembayaran",
+      "shippingTitle": "Informasi Pengiriman",
+      "addressLabel": "Alamat Tujuan",
+      "noAddress": "Tidak ada alamat pengiriman.",
+      "statusOverview": "Status Pesanan",
+      "createdAt": "Waktu Dibuat",
+      "updatedAt": "Terakhir Diperbarui",
+      "customerTitle": "Informasi Pelanggan",
+      "phone": "No. Telepon"
+    },
+    "notifications": {
+      "statusUpdateSuccess": "Status pesanan #{id} berhasil diperbarui menjadi {status}.",
+      "statusUpdateError": "Gagal memperbarui status pesanan.",
+      "notFound": "Pesanan tidak ditemukan atau telah dihapus."
+    },
+    "errors": {
+      "fetchFailed": "Gagal memuat daftar pesanan.",
+      "fetchDetailFailed": "Gagal memuat detail pesanan."
     }
   }
 }

@@ -6,7 +6,7 @@ import { ProtectedRoute, PublicRoute } from "./guards";
 // Feature page imports
 import { SignInPage, SignUpPage } from "@/features/auth";
 import { EcommerceDashboardPage } from "@/features/dashboard";
-import { OrdersPage } from "@/features/orders";
+import { OrdersPage, OrderDetailPage } from "@/features/orders";
 import {
   ProductsPage,
   CreateProductPage,
@@ -39,6 +39,7 @@ export const AppRouter: React.FC = () => {
 
           {/* E-Commerce Core Routes */}
           <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders/:id" element={<OrderDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/create" element={<CreateProductPage />} />
           <Route path="/products/:id/edit" element={<EditProductPage />} />

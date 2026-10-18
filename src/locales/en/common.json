@@ -22,7 +22,8 @@
     "next": "Next",
     "copy": "Copy ID",
     "copied": "Copied!",
-    "refresh": "Reload Data"
+    "refresh": "Reload Data",
+    "detail": "Details"
   },
   "sidebar": {
     "groups": {
@@ -1147,6 +1148,97 @@
     },
     "errors": {
       "fetchFailed": "Failed to load product list."
+    }
+  },
+  "orders": {
+    "title": "Order Management",
+    "subtitle": "Monitor incoming orders, verify transfer receipts, and manage shipping flow",
+    "meta": {
+      "title": "Order Management | FastShop Admin",
+      "description": "Manage customer orders, verify payment proofs, and update order statuses"
+    },
+    "tabs": {
+      "all": "All"
+    },
+    "statuses": {
+      "pending": "Pending Payment",
+      "processing": "Processing",
+      "paid": "Paid",
+      "shipped": "Shipped",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "failed": "Failed"
+    },
+    "search": {
+      "placeholder": "Search order ID / customer...",
+      "resetFilters": "Reset Search & Filters"
+    },
+    "table": {
+      "columns": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "totalAmount": "Total Amount",
+        "status": "Status",
+        "paymentProof": "Payment Proof",
+        "createdAt": "Transaction Date",
+        "actions": "Actions"
+      },
+      "empty": "No orders found.",
+      "emptyFiltered": "No orders match your filter criteria.",
+      "showingSummary": "Showing {from}-{to} of {total} orders",
+      "pageIndicator": "Page {current} / {total}"
+    },
+    "paymentProof": {
+      "title": "Payment Proof",
+      "view": "View Payment Proof",
+      "uploaded": "View Proof",
+      "none": "Not Uploaded",
+      "notUploaded": "Customer has not uploaded a payment proof yet.",
+      "loadError": "Failed to load transfer proof image.",
+      "openOriginal": "Open Original Image",
+      "clickToEnlarge": "Click to Enlarge",
+      "submittedAt": "Uploaded on"
+    },
+    "actions": {
+      "viewDetail": "View Order Details",
+      "updateStatus": "Update Status",
+      "backToList": "Back to Orders"
+    },
+    "updateStatus": {
+      "title": "Update Order Status",
+      "currentStatus": "Current Status",
+      "newStatusLabel": "Select New Status",
+      "submitButton": "Update Status",
+      "updating": "Saving...",
+      "paidNote": "Status 'Paid' confirms payment verification and order is ready for processing.",
+      "shippedNote": "Status 'Shipped' indicates the package has been handed over to the courier.",
+      "cancelledNote": "Warning: Cancelling the order terminates the fulfillment process.",
+      "completedNote": "Order is completed once successfully received by the customer."
+    },
+    "detail": {
+      "title": "Order Details",
+      "itemsTitle": "Purchased Products",
+      "itemsDesc": "Details of items purchased in this order",
+      "noItems": "No product items in this order.",
+      "subtotal": "Product Subtotal",
+      "totalAmount": "Total Amount",
+      "shippingTitle": "Shipping Information",
+      "addressLabel": "Destination Address",
+      "noAddress": "No shipping address provided.",
+      "statusOverview": "Order Status",
+      "createdAt": "Created At",
+      "updatedAt": "Last Updated",
+      "customerTitle": "Customer Information",
+      "phone": "Phone Number"
+    },
+    "notifications": {
+      "statusUpdateSuccess": "Order #{id} status successfully updated to {status}.",
+      "statusUpdateError": "Failed to update order status.",
+      "notFound": "Order not found or has been deleted."
+    },
+    "errors": {
+      "fetchFailed": "Failed to load order list.",
+      "fetchDetailFailed": "Failed to load order details."
     }
   }
 }
