@@ -7,7 +7,12 @@ import { ProtectedRoute, PublicRoute } from "./guards";
 import { SignInPage, SignUpPage } from "@/features/auth";
 import { EcommerceDashboardPage } from "@/features/dashboard";
 import { OrdersPage } from "@/features/orders";
-import { ProductsPage, CreateProductPage } from "@/features/products";
+import {
+  ProductsPage,
+  CreateProductPage,
+  EditProductPage,
+  ProductDetailPage,
+} from "@/features/products";
 import { CategoriesPage } from "@/features/categories";
 import { CalendarPage } from "@/features/calendar";
 import { UserProfilesPage } from "@/features/user-profile";
@@ -36,6 +41,8 @@ export const AppRouter: React.FC = () => {
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/create" element={<CreateProductPage />} />
+          <Route path="/products/:id/edit" element={<EditProductPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
 
           {/* User Profile */}

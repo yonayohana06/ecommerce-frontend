@@ -1,26 +1,51 @@
+import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import ComponentCard from "@/components/common/ComponentCard";
-import { useTranslation } from "react-i18next";
+import ProductForm from "../components/ProductForm";
 
 export default function CreateProductPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleSuccess = (message: string) => {
+    navigate("/products", {
+      state: {
+        notification: {
+          type: "success",
+          message,
+        },
+      },
+    });
+  };
+
+  const handleCancel = () => {
+    navigate("/products");
+  };
 
   return (
     <>
       <PageMeta
-        title="Add Product | FastShop Admin"
-        description="Add a new product to inventory"
+        title={t("products.meta.createTitle", "Tambah Produk | FastShop Admin")}
+        description={t(
+          "products.meta.createDescription",
+          "Tambah produk baru ke dalam katalog dan inventaris etalase toko Anda",
+        )}
       />
-      <PageBreadcrumb pageTitle={t("sidebar.items.addProduct", "Add Product")} />
+      <PageBreadcrumb
+        pageTitle={t("products.actions.addProduct", "Tambah Produk")}
+      />
 
       <div className="space-y-6">
-        <ComponentCard title={t("sidebar.items.addProduct", "Add New Product")}>
-          <div className="rounded-lg border border-dashed border-gray-300 p-8 text-center dark:border-gray-700">
-            <p className="text-gray-500 dark:text-gray-400">
-              Formulir Tambah Produk (Segera Diintegrasikan)
-            </p>
-          </div>
+        <ComponentCard
+          title={t("products.form.createTitle", "Tambah Produk Baru")}
+          desc={t(
+            "products.form.createDesc",
+            "Lengkapi formulir berikut untuk mendaftarkan produk baru ke katalog",
+          )}
+        >
+          <ProductForm onSuccess={handleSuccess} onCancel={handleCancel} />
         </ComponentCard>
       </div>
     </>

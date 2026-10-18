@@ -7,7 +7,22 @@
     "viewMore": "Lihat Selengkapnya",
     "delete": "Hapus",
     "filter": "Filter",
-    "seeAll": "Lihat Semua"
+    "seeAll": "Lihat Semua",
+    "success": "Berhasil",
+    "error": "Gagal",
+    "cancel": "Batal",
+    "clear": "Hapus",
+    "saving": "Menyimpan...",
+    "loading": "Memuat...",
+    "optional": "Opsional",
+    "uncategorized": "Tanpa Kategori",
+    "active": "Aktif",
+    "inactive": "Non-aktif",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "copy": "Salin ID",
+    "copied": "Tersalin!",
+    "refresh": "Muat Ulang Data"
   },
   "sidebar": {
     "groups": {
@@ -1026,6 +1041,114 @@
       "loadError": "Gagal memuat daftar kategori. Silakan muat ulang halaman.",
       "saveError": "Gagal menyimpan kategori. Silakan periksa data input Anda.",
       "deleteError": "Gagal menghapus kategori."
+    }
+  },
+  "products": {
+    "title": "Daftar Produk",
+    "subtitle": "Kelola inventaris produk, penetapan harga, stok, dan kategori",
+    "meta": {
+      "title": "Katalog Produk | FastShop Admin",
+      "description": "Kelola inventaris, harga, stok, dan etalase produk toko Anda",
+      "createTitle": "Tambah Produk | FastShop Admin",
+      "createDescription": "Tambah produk baru ke dalam katalog dan inventaris etalase toko Anda",
+      "editTitle": "Ubah Produk | FastShop Admin",
+      "editDescription": "Perbarui data katalog, harga, stok, dan spesifikasi produk toko Anda",
+      "detailDescription": "Lihat informasi lengkap, spesifikasi harga, stok, dan kategori produk"
+    },
+    "filter": {
+      "allCategories": "Semua Kategori"
+    },
+    "search": {
+      "placeholder": "Cari produk lalu tekan Enter...",
+      "resetFilters": "Reset Pencarian & Filter"
+    },
+    "table": {
+      "columns": {
+        "product": "Produk",
+        "category": "Kategori",
+        "price": "Harga",
+        "stock": "Stok",
+        "status": "Status",
+        "actions": "Aksi"
+      },
+      "empty": "Belum ada produk yang ditemukan.",
+      "emptyDesc": "Klik tombol 'Tambah Produk' untuk membuat produk pertama Anda.",
+      "emptyFiltered": "Tidak ada produk yang cocok dengan kriteria pencarian/filter.",
+      "emptyFilteredDesc": "Coba gunakan kata kunci lain atau ubah filter kategori.",
+      "showingSummary": "Menampilkan {from}-{to} dari {total} produk",
+      "pageIndicator": "Hal {current} / {total}",
+      "noImage": "Tidak ada gambar"
+    },
+    "stock": {
+      "inStock": "Tersedia",
+      "low": "Menipis",
+      "outOfStock": "Habis"
+    },
+    "detail": {
+      "title": "Detail Produk",
+      "overview": "Informasi Utama",
+      "createdAt": "Waktu Ditambahkan",
+      "updatedAt": "Terakhir Diperbarui",
+      "categoryId": "ID Kategori",
+      "noDescription": "Tidak ada deskripsi yang ditambahkan untuk produk ini."
+    },
+    "actions": {
+      "addProduct": "Tambah Produk",
+      "createProduct": "Tambah Produk",
+      "viewDetail": "Lihat Detail",
+      "viewFullPage": "Lihat Halaman Penuh",
+      "edit": "Ubah",
+      "editProduct": "Ubah Produk",
+      "delete": "Hapus",
+      "cancel": "Batal",
+      "saveChanges": "Simpan Perubahan",
+      "deleting": "Menghapus...",
+      "confirmDelete": "Hapus Produk",
+      "backToList": "Kembali ke Daftar Produk"
+    },
+    "form": {
+      "createTitle": "Tambah Produk Baru",
+      "createDesc": "Lengkapi formulir berikut untuk mendaftarkan produk baru ke katalog",
+      "editTitle": "Ubah Data Produk",
+      "editDesc": "Perbarui informasi, harga, stok, dan kategori produk",
+      "nameLabel": "Nama Produk",
+      "namePlaceholder": "Contoh: Sepatu Running Adidas Ultraboost",
+      "categoryLabel": "Kategori",
+      "categoryPlaceholder": "Pilih Kategori Produk",
+      "priceLabel": "Harga (Rp)",
+      "pricePreview": "Format",
+      "stockLabel": "Jumlah Stok",
+      "descriptionLabel": "Deskripsi Produk",
+      "descriptionPlaceholder": "Tuliskan detail spesifikasi, fitur, dan informasi produk...",
+      "imageUrlLabel": "URL Gambar Produk",
+      "imageUrlPlaceholder": "https://images.unsplash.com/...",
+      "imageUrlHint": "Masukkan tautan gambar langsung (HTTPS) berformat JPG, PNG, atau WebP.",
+      "imagePreview": "Pratinjau Gambar",
+      "noImagePreview": "Belum ada gambar yang dimasukkan",
+      "imageLoadError": "Gambar gagal dimuat dari tautan",
+      "validation": {
+        "nameRequired": "Nama produk wajib diisi.",
+        "categoryRequired": "Silakan pilih kategori produk.",
+        "priceInvalid": "Harga produk harus berupa angka yang valid (>= 0).",
+        "stockInvalid": "Jumlah stok harus berupa angka bulat yang valid (>= 0)."
+      }
+    },
+    "deleteModal": {
+      "title": "Hapus Produk",
+      "warning": "Apakah Anda yakin ingin menghapus produk \"{name}\"?",
+      "note": "Catatan: Produk yang sudah pernah masuk transaksi akan dinonaktifkan secara otomatis dan tidak dihapus permanen."
+    },
+    "notifications": {
+      "createSuccess": "Produk \"{name}\" berhasil ditambahkan.",
+      "updateSuccess": "Produk \"{name}\" berhasil diperbarui.",
+      "deleteSuccess": "Produk \"{name}\" berhasil dihapus.",
+      "saveError": "Gagal menyimpan data produk. Silakan periksa kembali input Anda.",
+      "deleteError": "Gagal menghapus produk.",
+      "loadDetailError": "Gagal memuat detail data produk.",
+      "notFound": "Produk tidak ditemukan atau telah dihapus."
+    },
+    "errors": {
+      "fetchFailed": "Gagal memuat daftar produk."
     }
   }
 }
