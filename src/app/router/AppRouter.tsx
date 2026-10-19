@@ -3,8 +3,7 @@ import { Route, Routes } from "react-router";
 import AppLayout from "@/layout/AppLayout";
 import { ProtectedRoute, PublicRoute } from "./guards";
 
-// Feature page imports
-import { SignInPage, SignUpPage } from "@/features/auth";
+import { SignInPage } from "@/features/auth";
 import { EcommerceDashboardPage } from "@/features/dashboard";
 import { OrdersPage, OrderDetailPage } from "@/features/orders";
 import {
@@ -78,7 +77,6 @@ export const AppRouter: React.FC = () => {
       {/* Public Authentication Routes */}
       <Route element={<PublicRoute />}>
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
       </Route>
 
       {/* Fallback Route */}

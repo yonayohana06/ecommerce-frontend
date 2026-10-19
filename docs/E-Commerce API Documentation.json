@@ -97,6 +97,95 @@
       "name": "Admin",
       "item": [
         {
+          "name": "Auth Admin",
+          "item": [
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "description": "",
+                "url": {
+                  "raw": "{{baseUrl}}admin/auth/login",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}admin"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {},
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    var jsonData = pm.response.json();",
+                      "    // Sesuaikan 'data.token' atau 'token' sesuai struktur JSON dari backend kamu",
+                      "    pm.environment.set(\"jwt_token\", jsonData.data.token); ",
+                      "}"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Me",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt_token}}",
+                    "description": "",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "description": "",
+                "url": {
+                  "raw": "{{baseUrl}}admin/auth/me",
+                  "protocol": "",
+                  "host": [
+                    "{{baseUrl}}admin"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ],
+                  "query": [],
+                  "variable": []
+                }
+              }
+            }
+          ]
+        },
+        {
           "name": "Categories",
           "item": [
             {

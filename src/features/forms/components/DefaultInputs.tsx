@@ -47,14 +47,16 @@ export default function DefaultInputs() {
             />
             <button
               onClick={() => setShowPassword(!showPassword)}
-              className={cn("absolute end-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer")}
+              className={cn(
+                "absolute end-4 top-1/2 z-30 -translate-y-1/2 flex items-center justify-center text-gray-400 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors focus:outline-hidden cursor-pointer",
+              )}
               type="button"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? (
-                <EyeIcon className={cn("size-5 fill-gray-500 dark:fill-gray-400")} />
+                <EyeIcon className="size-5" />
               ) : (
-                <EyeCloseIcon className={cn("size-5 fill-gray-500 dark:fill-gray-400")} />
+                <EyeCloseIcon className="size-5" />
               )}
             </button>
           </div>

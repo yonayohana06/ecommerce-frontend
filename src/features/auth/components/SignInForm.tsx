@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import Label from "@/components/form/Label";
 import Input from "@/components/form/input/InputField";
@@ -108,18 +108,22 @@ export default function SignInForm() {
                       onChange={handlePasswordChange}
                       placeholder={t("passwordPlaceholder")}
                       disabled={isSubmitting}
+                      className="pe-11"
                       required
                     />
-                    <span
+                    <button
+                      type="button"
                       onClick={() => !isSubmitting && setShowPassword(!showPassword)}
-                      className="absolute inset-e-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer"
+                      disabled={isSubmitting}
+                      className="absolute inset-e-4 top-1/2 z-30 -translate-y-1/2 flex items-center justify-center text-gray-400 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors focus:outline-hidden cursor-pointer"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                     >
                       {showPassword ? (
-                        <EyeIcon className="size-5 fill-gray-500 dark:fill-gray-400" />
+                        <EyeIcon className="size-5" />
                       ) : (
-                        <EyeCloseIcon className="size-5 fill-gray-500 dark:fill-gray-400" />
+                        <EyeCloseIcon className="size-5" />
                       )}
-                    </span>
+                    </button>
                   </div>
                 </div>
 
@@ -161,18 +165,6 @@ export default function SignInForm() {
                 </div>
               </div>
             </form>
-
-            <div className="mt-5">
-              <p className="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
-                {t("noAccount")}{" "}
-                <Link
-                  to="/signup"
-                  className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                >
-                  {t("signUpLink")}
-                </Link>
-              </p>
-            </div>
           </div>
         </div>
       </div>

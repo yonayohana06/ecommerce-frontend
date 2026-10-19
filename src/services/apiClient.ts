@@ -57,15 +57,20 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error: AxiosError<{ message?: string }>) => {
-    if (error.response?.status === 401) {
-      // Clear token on 401 Unauthorized
-      tokenStorage.remove();
+    const isLoginRequest = error.config?.url?.includes("/admin/auth/login");
 
-      // Redirect to signin if not already on an auth page
+    if (
+      error.response?.status === 401 ||
+      (error.response?.status === 403 && !isLoginRequest)
+    ) {
+      // Clear token & stored user on 401 Unauthorized or 403 Forbidden
+      tokenStorage.remove();
+      localStorage.removeItem("admin_user");
+
+      // Redirect to signin if not already on the signin page
       if (
         typeof window !== "undefined" &&
-        !window.location.pathname.startsWith("/signin") &&
-        !window.location.pathname.startsWith("/signup")
+        !window.location.pathname.startsWith("/signin")
       ) {
         window.location.href = "/signin";
       }

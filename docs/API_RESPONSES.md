@@ -7,7 +7,7 @@ Silakan edit struktur field dan tipe data di bawah ini sesuai dengan response ba
 
 ## 1. Authentication
 
-### `POST /auth/login`
+### `POST /admin/auth/login`
 
 - **Request Body:**
   ```json
@@ -39,37 +39,32 @@ Silakan edit struktur field dan tipe data di bawah ini sesuai dengan response ba
     "message": "Kredensial tidak valid (Email atau Password salah)."
   }
   ```
+- **Response 403 (Forbidden):**
+  ```json
+  {
+    "code": 403,
+    "message": "Akses ditolak. Akun Anda tidak memiliki hak akses administrator."
+  }
+  ```
 
 ---
 
-### `POST /auth/register`
+### `GET /admin/auth/me`
 
-- **Request Body:**
-  ```json
-  {
-    "name": "Agus Sumanto",
-    "email": "agussumanto@example.com",
-    "password": "password123"
-  }
-  ```
+- **Headers:** `Authorization: Bearer <token>`
 - **Response 201 (Created):**
   ```json
   {
-    "code": 201,
-    "message": "Registrasi berhasil",
+    "code": 200,
+    "message": "Berhasil mengambil profil administrator",
     "data": {
-      "id": "2",
-      "name": "Agus Sumanto",
-      "email": "agussumanto@example.com",
-      "created_at": "2026-10-16T18:15:53.152Z"
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@example.com",
+      "phone_number": null,
+      "role": "admin",
+      "created_at": "2026-09-11T15:44:56.935Z"
     }
-  }
-  ```
-- **Response 400 (Bad Request):**
-  ```json
-  {
-    "code": 400,
-    "message": "Email sudah terdaftar. Silakan gunakan email lain."
   }
   ```
 

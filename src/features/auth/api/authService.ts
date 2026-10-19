@@ -1,9 +1,8 @@
 import apiClient, { tokenStorage } from "@/services/apiClient";
 import type {
+  AdminProfileApiResponse,
   LoginApiResponse,
   LoginPayload,
-  RegisterApiResponse,
-  RegisterPayload,
   User,
 } from "../types";
 
@@ -11,13 +10,15 @@ const USER_STORAGE_KEY = "admin_user";
 
 export const authService = {
   /**
-   * Log in user / admin.
+   * Log in administrator.
    *
+   * Endpoint: POST /admin/auth/login
    * Backend returns: { code, message, data: { user, token } }
+   * Returns 403 if account does not have administrator privileges.
    */
   async login(payload: LoginPayload): Promise<LoginApiResponse> {
     const response = await apiClient.post<LoginApiResponse>(
-      "/auth/login",
+      "/admin/auth/login",
       payload,
     );
 
@@ -30,7 +31,6 @@ export const authService = {
     if (data.user) {
       localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(data.user));
     } else {
-      // Fallback user object using login email
       const fallbackUser: User = {
         id: "",
         name: payload.email.split("@")[0] || "Admin",
@@ -44,15 +44,23 @@ export const authService = {
   },
 
   /**
-   * Register new user / admin.
+   * Fetch current authenticated administrator profile.
    *
-   * Backend returns: { code, message, data: { id, name, email, created_at } }
+   * Endpoint: GET /admin/auth/me
+   * Headers: Authorization: Bearer <token>
    */
-  async register(payload: RegisterPayload): Promise<RegisterApiResponse> {
-    const response = await apiClient.post<RegisterApiResponse>(
-      "/auth/register",
-      payload,
+  async getMe(): Promise<AdminProfileApiResponse> {
+    const response = await apiClient.get<AdminProfileApiResponse>(
+      "/admin/auth/me",
     );
+
+    if (response.data.data) {
+      localStorage.setItem(
+        USER_STORAGE_KEY,
+        JSON.stringify(response.data.data),
+      );
+    }
+
     return response.data;
   },
 

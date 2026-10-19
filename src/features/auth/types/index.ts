@@ -1,11 +1,13 @@
 import type { ApiResponse } from "@/services/types";
 
-// ─── User ───────────────────────────────────────────────────────────
+// ─── Administrator User ─────────────────────────────────────────────
 export interface User {
   id: string;
   name: string;
   email: string;
+  phone_number?: string | null;
   role: string;
+  created_at?: string;
 }
 
 // ─── Auth Payloads ──────────────────────────────────────────────────
@@ -14,28 +16,14 @@ export interface LoginPayload {
   password: string;
 }
 
-export interface RegisterPayload {
-  name: string;
-  email: string;
-  password: string;
-}
-
 // ─── Auth Response Data ─────────────────────────────────────────────
 
-/** Shape of `data` returned by POST /auth/login */
+/** Shape of `data` returned by POST /admin/auth/login */
 export interface LoginResponseData {
   user: User;
   token: string;
 }
 
-/** Shape of `data` returned by POST /auth/register */
-export interface RegisterResponseData {
-  id: string;
-  name: string;
-  email: string;
-  created_at: string;
-}
-
 // ─── Full API Responses (typed aliases) ─────────────────────────────
 export type LoginApiResponse = ApiResponse<LoginResponseData>;
-export type RegisterApiResponse = ApiResponse<RegisterResponseData>;
+export type AdminProfileApiResponse = ApiResponse<User>;
