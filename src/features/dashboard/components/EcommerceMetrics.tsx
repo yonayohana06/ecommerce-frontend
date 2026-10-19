@@ -10,11 +10,8 @@ export default function EcommerceMetrics() {
 
   const totalRevenue = data?.totalRevenue ?? 0;
   const totalOrders = data?.totalOrders ?? 0;
-  const completedOrders =
-    (data?.ordersByStatus.PAID ?? 0) + (data?.ordersByStatus.COMPLETED ?? 0);
-  const pendingOrders =
-    (data?.ordersByStatus.PENDING ?? 0) +
-    (data?.ordersByStatus.PROCESSING ?? 0);
+  const completedOrders = data?.ordersByStatus.COMPLETED ?? 0;
+  const pendingOrders = data?.ordersByStatus.PENDING ?? 0;
 
   if (isLoading) {
     return (
@@ -88,20 +85,20 @@ export default function EcommerceMetrics() {
         </div>
       </div>
 
-      {/* 3. Paid & Completed */}
+      {/* 3. Completed Orders */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/3">
         <div className="flex items-center justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-400">
             <CheckCircleIcon className="size-6" />
           </div>
           <Badge color="success" size="sm">
-            {t("ecommerce.metrics.paidBadge", "Lunas")}
+            {t("ecommerce.metrics.completedBadge", "Selesai")}
           </Badge>
         </div>
 
         <div className="mt-5">
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            {t("ecommerce.metrics.completedOrders", "Pesanan Lunas")}
+            {t("ecommerce.metrics.completedOrders", "Pesanan Selesai")}
           </span>
           <h4
             className="mt-1 text-title-sm font-bold text-gray-800 dark:text-white/90 truncate"
@@ -112,20 +109,20 @@ export default function EcommerceMetrics() {
         </div>
       </div>
 
-      {/* 4. Pending / In Process */}
+      {/* 4. Pending Orders */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/3">
         <div className="flex items-center justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400">
             <TimeIcon className="size-6" />
           </div>
           <Badge color="warning" size="sm">
-            {t("ecommerce.metrics.pendingBadge", "Pending")}
+            {t("ecommerce.metrics.pendingBadge", "Menunggu")}
           </Badge>
         </div>
 
         <div className="mt-5">
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            {t("ecommerce.metrics.pendingOrders", "Perlu Diproses")}
+            {t("ecommerce.metrics.pendingOrders", "Pesanan Menunggu")}
           </span>
           <h4
             className="mt-1 text-title-sm font-bold text-gray-800 dark:text-white/90 truncate"

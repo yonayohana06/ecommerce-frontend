@@ -12,25 +12,25 @@ export default function OrderStatusChart() {
 
   const statusConfigs = [
     {
-      key: "PAID",
-      label: t("ecommerce.orderStatus.labels.paid", "Lunas (Paid)"),
-      count: (ordersByStatus?.PAID ?? 0) + (ordersByStatus?.COMPLETED ?? 0),
+      key: "COMPLETED",
+      label: t("ecommerce.orderStatus.labels.completed", "Selesai"),
+      count: ordersByStatus?.COMPLETED ?? 0,
       color: "#12B76A", // success-500
       badgeBg: "bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-400",
+    },
+    {
+      key: "PAID",
+      label: t("ecommerce.orderStatus.labels.paid", "Sudah Dibayar"),
+      count: ordersByStatus?.PAID ?? 0,
+      color: "#0BA5EC", // blue-light-500
+      badgeBg: "bg-blue-light-50 text-blue-light-600 dark:bg-blue-light-500/15 dark:text-blue-light-400",
     },
     {
       key: "PROCESSING",
       label: t("ecommerce.orderStatus.labels.processing", "Diproses"),
       count: ordersByStatus?.PROCESSING ?? 0,
-      color: "#0BA5EC", // blue-light-500
-      badgeBg: "bg-blue-light-50 text-blue-light-600 dark:bg-blue-light-500/15 dark:text-blue-light-400",
-    },
-    {
-      key: "PENDING",
-      label: t("ecommerce.orderStatus.labels.pending", "Menunggu"),
-      count: ordersByStatus?.PENDING ?? 0,
-      color: "#F79009", // warning-500
-      badgeBg: "bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400",
+      color: "#7A5AF8", // purple-500
+      badgeBg: "bg-purple-50 text-purple-600 dark:bg-purple-500/15 dark:text-purple-400",
     },
     {
       key: "SHIPPED",
@@ -38,6 +38,13 @@ export default function OrderStatusChart() {
       count: ordersByStatus?.SHIPPED ?? 0,
       color: "#465FFF", // brand-500
       badgeBg: "bg-brand-50 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400",
+    },
+    {
+      key: "PENDING",
+      label: t("ecommerce.orderStatus.labels.pending", "Menunggu"),
+      count: ordersByStatus?.PENDING ?? 0,
+      color: "#F79009", // warning-500
+      badgeBg: "bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-warning-400",
     },
     {
       key: "CANCELLED",
@@ -48,11 +55,12 @@ export default function OrderStatusChart() {
     },
   ];
 
-  const series = statusConfigs.map((s) => s.count);
-  const labels = statusConfigs.map((s) => s.label);
-  const colors = statusConfigs.map((s) => s.color);
+  const activeConfigs = statusConfigs.filter((s) => s.count > 0);
+  const series = activeConfigs.map((s) => s.count);
+  const labels = activeConfigs.map((s) => s.label);
+  const colors = activeConfigs.map((s) => s.color);
 
-  const hasData = series.some((count) => count > 0);
+  const hasData = activeConfigs.length > 0;
 
   const options: ApexOptions = {
     chart: {
@@ -151,9 +159,7 @@ export default function OrderStatusChart() {
 
           {/* Custom Status Legend List */}
           <div className="mt-4 space-y-2 border-t border-gray-100 pt-4 dark:border-gray-800">
-            {statusConfigs
-              .filter((s) => s.count > 0)
-              .map((item) => {
+            {activeConfigs.map((item) => {
                 const percentage = totalOrders > 0
                   ? Math.round((item.count / totalOrders) * 100)
                   : 0;

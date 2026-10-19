@@ -168,10 +168,11 @@
       "orders": "Orders",
       "totalRevenue": "Total Revenue",
       "totalOrders": "Total Orders",
-      "completedOrders": "Paid Orders",
-      "pendingOrders": "Needs Processing",
+      "completedOrders": "Completed Orders",
+      "pendingOrders": "Pending Orders",
       "revenueBadge": "IDR",
       "allBadge": "All",
+      "completedBadge": "Completed",
       "paidBadge": "Paid",
       "pendingBadge": "Pending"
     },
@@ -242,6 +243,7 @@
       "orderCount": "{count} orders",
       "noData": "No transaction data yet",
       "labels": {
+        "completed": "Completed",
         "paid": "Paid",
         "processing": "Processing",
         "pending": "Pending",
