@@ -140,11 +140,6 @@
       "categories": "Kategori",
       "orders": "Pesanan",
       "productList": "Daftar Produk"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Leading Tailwind CSS Admin Template with 500+ UI Component and Pages.",
-      "purchasePlan": "Purchase Plan"
     }
   },
   "header": {
@@ -161,9 +156,9 @@
   },
   "userDropdown": {
     "editProfile": "Edit Profil",
-    "accountSettings": "Account settings",
+    "accountSettings": "Pengaturan Akun",
     "support": "Dukungan",
-    "language": "Language",
+    "language": "Bahasa",
     "signOut": "Keluar",
     "chat": "Obrolan",
     "settings": "Pengaturan Akun"

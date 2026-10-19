@@ -74,7 +74,9 @@ const accountNavItems: NavItem[] = [
   },
 ];
 
-// 3. Demo / Elemen UI
+// 3. Demo / Elemen UI (Set ke true jika ingin menampilkan menu demo / elemen UI di sidebar)
+const SHOW_UI_ELEMENTS = false;
+
 const othersNavItems: NavItem[] = [
   {
     icon: <PlugInIcon fontSize={24} />,
@@ -127,7 +129,9 @@ const AppSidebar: React.FC = () => {
     const sections: { type: MenuType; items: NavItem[] }[] = [
       { type: "main", items: mainNavItems },
       { type: "account", items: accountNavItems },
-      { type: "others", items: othersNavItems },
+      ...(SHOW_UI_ELEMENTS
+        ? [{ type: "others" as MenuType, items: othersNavItems }]
+        : []),
     ];
 
     sections.forEach(({ type, items }) => {
@@ -340,31 +344,24 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "xl:justify-center" : "justify-start",
         )}
       >
-        <Link to="/">
-          {isExpanded || isHovered || isMobileOpen ? (
-            <>
-              <img
-                className="dark:hidden"
-                src="/images/logo/logo.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-              <img
-                className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-            </>
-          ) : (
-            <img
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
+        <Link
+          to="/"
+          className={cn(
+            "flex items-center gap-3",
+            !isExpanded && !isHovered && "xl:justify-center",
+          )}
+        >
+          <img
+            src="/images/logo/logo.png"
+            alt="FastShop Logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain shrink-0"
+          />
+          {(isExpanded || isHovered || isMobileOpen) && (
+            <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+              FastShop
+            </span>
           )}
         </Link>
       </div>
@@ -409,22 +406,24 @@ const AppSidebar: React.FC = () => {
             </div>
 
             {/* Section 3: Demo / Elemen UI */}
-            <div>
-              <h2
-                className={`mb-3 flex text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500 ${
-                  !isExpanded && !isHovered
-                    ? "xl:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  t("sidebar.groups.others")
-                ) : (
-                  <HorizontaLDots className="size-6" />
-                )}
-              </h2>
-              {renderMenuItems(othersNavItems, "others")}
-            </div>
+            {SHOW_UI_ELEMENTS && (
+              <div>
+                <h2
+                  className={`mb-3 flex text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500 ${
+                    !isExpanded && !isHovered
+                      ? "xl:justify-center"
+                      : "justify-start"
+                  }`}
+                >
+                  {isExpanded || isHovered || isMobileOpen ? (
+                    t("sidebar.groups.others")
+                  ) : (
+                    <HorizontaLDots className="size-6" />
+                  )}
+                </h2>
+                {renderMenuItems(othersNavItems, "others")}
+              </div>
+            )}
           </div>
         </nav>
       </div>

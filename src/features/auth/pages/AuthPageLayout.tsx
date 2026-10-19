@@ -18,17 +18,21 @@ export default function AuthLayout({
             <GridShape />
 
             <div className="flex max-w-xs flex-col items-center">
-              <Link to="/" className="mb-4 block">
+              <Link to="/" className="mb-4 flex items-center gap-3">
                 <img
-                  width={231}
-                  height={48}
-                  src="/images/logo/auth-logo.svg"
-                  alt="Logo"
+                  width={40}
+                  height={40}
+                  src="/images/logo/logo.png"
+                  alt="FastShop Logo"
+                  className="h-10 w-10 object-contain"
                 />
+                <span className="text-2xl font-bold tracking-tight text-white">
+                  FastShop
+                </span>
               </Link>
 
               <p className="text-center text-gray-400 dark:text-white/60">
-                Free and Open-Source Tailwind CSS Admin Dashboard Template
+                Modern E-Commerce Admin Dashboard
               </p>
             </div>
           </div>

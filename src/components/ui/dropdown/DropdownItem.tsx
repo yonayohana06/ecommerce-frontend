@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import type React from "react";
 import { Link } from "react-router";
 
@@ -20,7 +21,7 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
   className = "",
   children,
 }) => {
-  const combinedClasses = `${baseClassName} ${className}`.trim();
+  const combinedClasses = cn(baseClassName, className);
 
   const handleClick = (event: React.MouseEvent) => {
     if (tag === "button") {
