@@ -201,7 +201,7 @@
 }
 
 @utility menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/12 dark:text-brand-400;
 }
 
 @utility menu-item-inactive {
@@ -237,7 +237,7 @@
 }
 
 @utility menu-dropdown-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/12 dark:text-brand-400;
 }
 
 @utility menu-dropdown-item-inactive {
@@ -441,7 +441,7 @@
 
 .carouselThree .swiper-pagination-bullet,
 .carouselFour .swiper-pagination-bullet {
-  @apply !m-0 h-2.5 w-2.5 bg-white opacity-100 shadow-theme-xs duration-200 ease-in-out;
+  @apply m-0! h-2.5 w-2.5 bg-white opacity-100 shadow-theme-xs duration-200 ease-in-out;
 }
 
 .carouselThree .swiper-pagination-bullet-active,
@@ -585,17 +585,17 @@
 
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-  @apply !top-7 !bg-transparent dark:!fill-white dark:!text-white;
+  @apply top-7! bg-transparent! dark:fill-white! dark:text-white!;
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month.flatpickr-prev-month {
-  @apply !left-7;
+  @apply left-7!;
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-next-month,
 .flatpickr-months .flatpickr-next-month.flatpickr-next-month {
-  @apply !right-7;
+  @apply right-7!;
 }
 
 .flatpickr-days {
@@ -604,7 +604,7 @@
 
 span.flatpickr-weekday,
 .flatpickr-months .flatpickr-month {
-  @apply !bg-none dark:!fill-white dark:!text-white;
+  @apply bg-none! dark:fill-white! dark:text-white!;
 }
 
 .flatpickr-rContainer {
@@ -612,18 +612,18 @@ span.flatpickr-weekday,
 }
 
 .flatpickr-innerContainer {
-  @apply !border-b-0;
+  @apply border-b-0!;
 }
 
 .flatpickr-months .flatpickr-month {
-  @apply !bg-none;
+  @apply bg-none!;
 }
 
 .flatpickr-day.inRange {
   box-shadow:
     -5px 0 0 #f9fafb,
     5px 0 0 #f9fafb !important;
-  @apply dark:!shadow-datepicker;
+  @apply dark:shadow-datepicker!;
 }
 
 .flatpickr-day.inRange,
@@ -638,14 +638,14 @@ span.flatpickr-weekday,
 .flatpickr-day:focus,
 .flatpickr-day.prevMonthDay:focus,
 .flatpickr-day.nextMonthDay:focus {
-  @apply !border-gray-50 !bg-gray-50 dark:!border-0 dark:!border-white/5 dark:!bg-white/5;
+  @apply border-gray-50! bg-gray-50! dark:border-0! dark:border-white/5! dark:bg-white/5!;
 }
 
 .flatpickr-day.selected,
 .flatpickr-day.startRange,
 .flatpickr-day.selected,
 .flatpickr-day.endRange {
-  @apply !text-white dark:!text-white;
+  @apply text-white! dark:text-white!;
 }
 
 .flatpickr-day.selected,
@@ -667,7 +667,7 @@ span.flatpickr-weekday,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
   background: #465fff;
-  @apply !border-brand-500 !bg-brand-500 hover:!border-brand-500 hover:!bg-brand-500;
+  @apply border-brand-500! bg-brand-500! hover:border-brand-500! hover:bg-brand-500!;
 }
 
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
@@ -680,7 +680,7 @@ span.flatpickr-weekday,
 .flatpickr-months .flatpickr-next-month svg,
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-  @apply hover:!fill-none;
+  @apply hover:fill-none!;
 }
 
 .flatpickr-months .flatpickr-prev-month:hover svg,
@@ -798,7 +798,7 @@ pre[class*="language-"].line-numbers {
 }
 
 @utility docs-menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/12 dark:text-brand-400;
 }
 
 @utility docs-menu-item-inactive {
@@ -806,7 +806,7 @@ pre[class*="language-"].line-numbers {
 }
 
 @utility docs-border-item {
-  @apply -ms-[1.5px] block border-s ps-4 text-sm font-normal transition-colors duration-200;
+  @apply ms-[-1.5px] block border-s ps-4 text-sm font-normal transition-colors duration-200;
 }
 
 @utility docs-border-item-active {
@@ -819,7 +819,7 @@ pre[class*="language-"].line-numbers {
 
 /* Sidebar Five */
 @utility docs-border-item {
-  @apply -ms-[1.5px] block border-s ps-4 text-sm font-normal transition-colors duration-200;
+  @apply ms-[-1.5px] block border-s ps-4 text-sm font-normal transition-colors duration-200;
 }
 
 @utility docs-border-item-active {
@@ -845,10 +845,10 @@ pre[class*="language-"].line-numbers {
 
 /* Map two */
 #mapTwo .jvectormap-container {
-  @apply !bg-transparent;
+  @apply bg-transparent!;
 }
 .jvm-region.jvm-element {
-  @apply !fill-gray-300 hover:!fill-brand-500 dark:!fill-gray-700 dark:hover:!fill-brand-500;
+  @apply fill-gray-300! hover:fill-brand-500! dark:fill-gray-700! dark:hover:fill-brand-500!;
 }
 #mapTwo .jvectormap-region.jvectormap-element {
   fill: #9cb9ff !important;

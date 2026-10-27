@@ -1,0 +1,10 @@
+export { default as ProductsPage } from "./pages/ProductsPage";
+export { default as CreateProductPage } from "./pages/CreateProductPage";
+export { default as EditProductPage } from "./pages/EditProductPage";
+export { default as ProductDetailPage } from "./pages/ProductDetailPage";
+export { default as ProductTable } from "./components/ProductTable";
+export { default as ProductForm } from "./components/ProductForm";
+export { default as DeleteProductModal } from "./components/DeleteProductModal";
+export { default as productService } from "./api/productService";
+export * from "./hooks/useProducts";
+export * from "./types";

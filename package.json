@@ -1,5 +1,5 @@
 {
-  "name": "tailadmin-react",
+  "name": "fastshop-admin",
   "private": true,
   "version": "2.4.0",
   "type": "module",
@@ -13,7 +13,9 @@
     "@floating-ui/react": "^0.27.20",
     "@fullcalendar/react": "^7.1.0",
     "@popperjs/core": "^2.11.8",
+    "@tanstack/react-query": "^5.104.0",
     "apexcharts": "^7.1.0",
+    "axios": "^1.20.0",
     "clsx": "^2.1.1",
     "flatpickr": "^4.6.13",
     "i18next": "^26.4.0",

@@ -6,33 +6,32 @@
 
 ```
 src/
-├── App.tsx                    # root router — all routes registered here
-├── main.tsx                   # entry point: providers + CSS imports
+├── app/                       # Application shell, router setup, and route guards
+│   ├── App.tsx                # root app component (Router + ScrollToTop + AppRouter)
+│   ├── router/
+│   │   ├── AppRouter.tsx      # route definitions (<Routes> / <Route>)
+│   │   ├── guards/            # route guards: ProtectedRoute, PublicRoute
+│   │   └── index.ts           # router barrel export
+│   └── index.ts               # app barrel export
+├── main.tsx                   # entry point: providers + CSS imports + App mount
 ├── index.css                  # Tailwind v4 @theme tokens, @utility classes, third-party overrides
-├── pages/                     # route-level components (one file or folder per page)
-│   ├── Dashboard/             # dashboard variants: Ecommerce, Analytics, CRM, Sales, Finance…
-│   ├── AuthPages/             # SignIn, SignUp, ResetPassword, TwoStepVerification
-│   ├── Ecommerce/             # ProductList, AddProduct, Billing, Invoices, Transactions…
-│   ├── Forms/                 # FormElements, FormLayout
-│   ├── Tables/                # BasicTables, DataTables
-│   ├── Charts/                # LineChart, BarChart, PieChart, RadarChart, RadialChart
-│   ├── UiElements/            # Alerts, Badges, Buttons, Modals, Tabs, Tooltips…
-│   ├── Task/                  # TaskKanban, TaskList
-│   ├── Email/                 # EmailInbox, EmailDetails
-│   ├── Maps/                  # Maps, VectorMap
-│   ├── Ai/                    # AI generator pages (Text, Image, Code, Video) + AiSettings
-│   ├── Layouts/               # LayoutOne … LayoutSix (alternative sidebar demos)
-│   └── OtherPage/             # NotFound, ComingSoon, Maintenance, Success, 500, 503…
-├── components/
+├── features/                  # Feature-Driven Architecture domain slices
+│   ├── auth/                  # Authentication (components, pages, index.ts)
+│   ├── dashboard/             # Ecommerce Dashboard metrics & charts (components, pages, index.ts)
+│   ├── calendar/              # Calendar & events management (components, pages, index.ts)
+│   ├── user-profile/          # User profile & account settings (components, pages, index.ts)
+│   ├── tables/                # Data table presentations (components, pages, index.ts)
+│   ├── forms/                 # Form element demos & components (components, pages, index.ts)
+│   ├── charts/                # Line & Bar chart modules (components, pages, index.ts)
+│   ├── ui-elements/           # UI Elements showcase pages (pages, index.ts)
+│   └── other-pages/           # Blank, NotFound fallback pages (pages, index.ts)
+├── components/                # Shared & Core UI (non-domain specific)
 │   ├── ui/                    # primitives: alert/, avatar/, badge/, button/, card/,
-│   │                          #   carousel/, dropdown/, modal/, pagination/, table/, tabs/,
-│   │                          #   tooltip/, popover/, progressbar/, spinner/, ribbons/…
-│   ├── form/                  # Form, Label, Select, MultiSelect, date-picker + input/, switch/
+│   │                          #   dropdown/, modal/, table/, images/, videos/…
+│   ├── form/                  # shared form controls: Form, Label, Select, MultiSelect, date-picker, input/, switch/
 │   ├── common/                # shared widgets: PageBreadCrumb, ComponentCard, PageMeta,
 │   │                          #   ThemeToggleButton, ScrollToTop, TableDropdown, ChartTab…
-│   ├── header/                # AppHeader dropdowns (notifications, user menu, language…)
-│   └── <feature>/             # one folder per domain: ecommerce/, crm/, analytics/,
-│                              #   charts/, chats/, task/, invoice/, ai/, maps/…
+│   └── header/                # AppHeader dropdowns (notifications, user menu, language…)
 ├── layout/                    # AppLayout (sidebar+header shell), AlternativeLayout,
 │                              #   AppSidebar, AppHeader, Backdrop, SidebarWidget
 ├── context/                   # ThemeContext, SidebarContext, LanguageContext
@@ -56,22 +55,25 @@ src/
 - Scripts: `npm run dev` (Vite dev server), `npm run build` (tsc + Vite), `npm run lint`.
 - Node >= 20.19.0 || >= 22.12.0 required (Vite 8 requirement).
 
-## Routing Conventions
+## Routing & App Structure Conventions
 
-- All routes are registered in `src/App.tsx` using `<Routes>` / `<Route>`.
-- Three layout groups:
-  - **`<AppLayout>`** — standard dashboard shell (sidebar + header). Most pages live here.
-  - **`<AlternativeLayout>`** — full-width shell for AI generator pages and AI settings.
-  - **No layout** — standalone pages: auth routes (`/signin`, `/signup`…), error pages, layout demos.
-- **New page** → create a file or folder under `src/pages/<Category>/MyPage.tsx`, then add a `<Route>` in `App.tsx` under the appropriate layout group.
-- Page files are **PascalCase** (`MyPage.tsx`) with a **default export**.
-- Colocate route-only sub-components inside the page folder. Reusable UI goes in `src/components/<feature>/`.
+- **Root App**: Lives in `src/app/App.tsx`.
+- **Router & Guards**: All routes and route guards live in `src/app/router/`.
+  - `src/app/router/guards/ProtectedRoute.tsx` guards authenticated routes.
+  - `src/app/router/guards/PublicRoute.tsx` guards unauthenticated public routes (e.g. `/signin`, `/signup`).
+  - `src/app/router/AppRouter.tsx` maps routes to feature pages.
+- **New page/feature** → Create or extend a domain under `src/features/<feature-name>/`:
+  - `components/` for internal domain components.
+  - `pages/` for route page components.
+  - `index.ts` for public barrel export.
+  - Register route in `src/app/router/AppRouter.tsx` importing from `@/features/<feature-name>`.
 
 ## Conventions
 
 - **Component files**: PascalCase (`EcommerceMetrics.tsx`) with a **default export**.
 - **Hook files**: camelCase (`useModal.ts`).
-- **New reusable component** → `src/components/<feature>/` if domain-specific, else `src/components/common/` or `src/components/ui/`.
+- **Feature boundaries**: Business logic & feature components belong to `src/features/<feature-name>/`.
+- **New reusable component** → `src/components/common/` or `src/components/ui/` if global/generic; else within `src/features/<feature-name>/components/`.
 - **New icon** → drop the `.svg` into `src/icons/`, add a named export to `src/icons/index.ts` using a PascalCase name (e.g., `export { ReactComponent as MyIcon } from "./my-icon.svg"`). Never inline SVG markup in components.
 - **Page meta (SEO)** → every page must render `<PageMeta title="…" description="…" />` (from `src/components/common/PageMeta.tsx`) as the first child.
 - **Breadcrumbs** → add `<PageBreadCrumb pageTitle="…" />` at the top of admin pages, matching existing pages.

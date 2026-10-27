@@ -1,226 +1,147 @@
-# TailAdmin React - Free React Tailwind Admin Dashboard Template
+# FastShop Admin — E-Commerce Dashboard
 
-TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers
-with everything they need to create a comprehensive, data-driven back-end,
-dashboard, or admin panel solution for upcoming web projects.
+[![React 19](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite 8](https://img.shields.io/badge/Vite-8.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.3-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![i18n](https://img.shields.io/badge/i18n-ID_%7C_EN-FF5722?logo=google-translate&logoColor=white)](https://react.i18next.com/)
 
-With TailAdmin, you get access to all the necessary dashboard UI components, elements, and pages required to build a
-feature-rich and complete dashboard or admin panel. Whether you're building dashboard or admin panel for a complex web
-application or a simple website, TailAdmin is the perfect solution to help you get up and running quickly.
+**FastShop Admin** adalah template panel admin modern, responsif, dan siap produksi untuk pengelolaan operasional toko online (*e-commerce*). Dibangun menggunakan ekosistem terbaru **React 19**, **Tailwind CSS v4**, dan **Vite 8** dengan arsitektur berbasis fitur (*Feature-Driven Architecture*).
 
-![TailAdmin React.js Dashboard Preview](./banner.png)
+---
 
-## Overview
+## 🚀 Fitur Utama
 
-TailAdmin provides essential UI components and layouts for building feature-rich, data-driven admin dashboards and
-control panels. It's built on:
+### 🛍️ Manajemen Kategori Produk (Full CRUD)
+* **Tabel Terstruktur**: Tampilan data kategori dengan *sticky header* dan *internal vertical scroll* yang memaksimalkan area kerja layar.
+* **Traditional Search (Enter to Submit)**: Input pencarian dengan tombol Enter untuk mengeksekusi request, dilengkapi tombol *Clear* (**X**) dan tombol *Escape* untuk reset seketika.
+* **Modal Tambah & Ubah Kategori**: Form interaktif dengan validasi input, generator *slug* otomatis, dan dukungan URL ikon gambar.
+* **Modal Konfirmasi Hapus**: Dialog konfirmasi penghapusan aman yang otomatis mendeteksi dan memperingatkan jumlah produk yang terasosiasi dengan kategori.
+* **Skeleton Loading**: Tampilan pemuatan data yang bersih dan konsisten tanpa kedipan layar atau pergeseran tata letak (*layout shift*).
 
-- React 19
-- TypeScript
-- Tailwind CSS v4
+### 📊 Dashboard & Analitik Penjualan
+* **Kartu Metrik Kunci**: Informasi langsung mengenai Total Penjualan, Pendapatan (*Revenue*), Pelanggan, dan Pesanan.
+* **Visualisasi Grafik**: Grafik status pesanan (*Order Status Chart*) dan grafik performa penjualan ditenagai oleh ApexCharts.
+* **Pesanan Terbaru (*Recent Orders*)**: Tabel transaksi terkini lengkap dengan badge status pesanan dan format tanggal lokal.
 
-### Quick Links
+### 🔐 Autentikasi & Keamanan
+* **JWT Authentication**: Penyimpanan token aman dengan Axios Request Interceptor otomatis (`Authorization: Bearer <token>`).
+* **Auto-Redirect 401**: Deteksi sesi kedaluwarsa secara otomatis dan mengarahkan pengguna kembali ke halaman masuk.
+* **Route Guards**:
+  * `ProtectedRoute`: Melindungi halaman admin agar hanya dapat diakses pengguna yang terotentikasi.
+  * `PublicRoute`: Mengarahkan pengguna yang sudah login menjauhi halaman `/signin` dan `/signup`.
 
-- [✨ Visit Website](https://tailadmin.com)
-- [📄 Documentation](https://tailadmin.com/docs)
-- [⬇️ Download](https://tailadmin.com/download)
-- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1214477970819985778)
-- [⚡ Get PRO Version](https://tailadmin.com/pricing)
+### 🌐 Internasionalisasi (Multi-Bahasa)
+* Mendukung penuh **Bahasa Indonesia (`id`)** dan **English (`en`)** menggunakan `react-i18next`.
+* Tombol alih bahasa cepat di header aplikasi dengan persistensi di `localStorage`.
 
-### Demos
+### 🌓 Mode Gelap & Terang (Dark / Light Mode)
+* Dukungan Dark Mode menyeluruh berbasis *class* (`.dark`) terintegrasi langsung dengan token tema Tailwind CSS v4.
 
-- [Free Version](https://free-react-demo.tailadmin.com/)
-- [Pro Version](https://react-demo.tailadmin.com)
+### 📱 Desain Responsif & Mobile-First
+* Tata letak fleksibel untuk Desktop, Tablet, hingga Layar Ponsel (*Smartphones*).
+* Tombol aksi adaptif (misal: tombol Tambah Kategori otomatis menjadi ikon kotak ringkas di ponsel dan melebar di layar desktop).
 
-### Other Versions
+---
 
-- [HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
-- [Angular Version](https://github.com/TailAdmin/free-angular-tailwind-dashboard)
-- [Laravel Version](https://github.com/TailAdmin/tailadmin-laravel)
+## 🛠️ Tech Stack
 
-## Installation
+| Kategori | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Framework & Core** | React 19, TypeScript ~5.7 | Library UI deklaratif dengan pengetikan ketat |
+| **Build Tool** | Vite 8 | Build tool berkecepatan tinggi dengan HMR instan |
+| **Styling** | Tailwind CSS v4 | Utility-first CSS via `@theme` token di `src/index.css` |
+| **Routing** | React Router v7 | Navigasi halaman client-side dengan route guards |
+| **HTTP Client** | Axios | Request HTTP terkonfigurasi dengan interceptor |
+| **Internationalization** | react-i18next, i18next | Manajemen translasi multi-bahasa dinamis |
+| **Visualisasi Data** | ApexCharts, react-apexcharts | Grafik interaktif performa toko |
+| **Ikon** | SVGR (`@/icons`) | Ikon SVG diimpor langsung sebagai komponen React |
 
-### Prerequisites
+---
 
-To get started with TailAdmin, ensure you have the following prerequisites installed and set up:
+## 📂 Struktur Direktori Proyek
 
-- Node.js 20.x or later
+Proyek ini menerapkan **Feature-Driven Architecture** untuk memastikan kode tetap terorganisir, terisolasi, dan mudah diperluas:
 
-### Cloning the Repository
-
-Clone the repository using the following command:
-
-```bash
-git clone https://github.com/TailAdmin/free-react-tailwind-admin-dashboard.git
+```text
+src/
+├── app/                       # Shell aplikasi, router, dan route guards
+│   ├── App.tsx                # Root App component
+│   └── router/                # Definisi rute (AppRouter) & Guards (ProtectedRoute, PublicRoute)
+├── components/                # Komponen UI global (non-domain specific)
+│   ├── ui/                    # Primitives (button, modal, alert, badge, table, dropdown)
+│   ├── form/                  # Shared form controls (Input, Select, Label, Switch)
+│   ├── common/                # Widgets (PageBreadCrumb, PageMeta, ThemeToggle)
+│   └── header/                # Header dropdowns (UserDropdown, NotificationDropdown)
+├── features/                  # Domain Slices (Feature-Driven Architecture)
+│   ├── auth/                  # Halaman & komponen autentikasi (SignIn, SignUp)
+│   ├── dashboard/             # Metrik ecommerce, recent orders, order charts
+│   ├── categories/            # CRUD Kategori (api, components, pages, types)
+│   ├── calendar/              # Pengelolaan event kalender
+│   └── user-profile/          # Pengaturan & profil pengguna
+├── services/                  # Konfigurasi API Client (Axios) & token storage
+├── layout/                    # Layout shell: AppLayout, AppSidebar, AppHeader
+├── context/                   # Context providers (ThemeContext, SidebarContext, LanguageContext)
+├── hooks/                     # Custom hooks (useModal, useClickOutside, useGoBack)
+├── locales/                   # Berkas kamus terjemahan (id/common.json, en/common.json)
+├── icons/                     # Berkas .svg + barrel export index.ts
+└── utils/                     # Utility helpers (formatRupiah, formatDate, cn)
 ```
 
-> Windows Users: place the repository near the root of your drive if you face issues while cloning.
+---
 
-1. Install dependencies:
+## 🏁 Memulai (Getting Started)
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+### Prasyarat
+* **Node.js**: Versi `20.19.0+` atau `22.12.0+` (syarat minimum Vite 8)
+* **npm** atau **yarn**
 
-2. Start the development server:
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+### 1. Klon Repositori
+```bash
+git clone <repository-url>
+cd ecommerce-frontend
+```
 
-## Components
+### 2. Konfigurasi Environment Variables
+Buat berkas `.env` di root direktori proyek:
+```env
+VITE_API_BASE_URL=http://localhost:3000/api
+```
 
-TailAdmin is a pre-designed starting point for building a web-based dashboard using React.js and Tailwind CSS. The
-template includes:
+### 3. Instalasi Dependensi
+```bash
+npm install
+```
 
-- Sophisticated and accessible sidebar
-- Data visualization components
-- Prebuilt profile management and 404 page
-- Tables and Charts(Line and Bar)
-- Authentication forms and input elements
-- Alerts, Dropdowns, Modals, Buttons and more
-- FAQ & Accordion, Testimonials, and Carousels
-- Can't forget Dark Mode 🕶️
+### 4. Menjalankan Server Pengembangan
+```bash
+npm run dev
+```
+Buka browser dan akses alamat lokal yang ditampilkan (biasanya `http://localhost:5173`).
 
-All components are built with React and styled using Tailwind CSS for easy customization.
+---
 
-## Feature Comparison
+## 📜 Perintah yang Tersedia (Scripts)
 
-### Free Version
+| Perintah | Deskripsi |
+| :--- | :--- |
+| `npm run dev` | Menjalankan Vite development server dengan HMR |
+| `npm run build` | Menjalankan kompilasi TypeScript (`tsc -b`) dan membuat build produksi |
+| `npm run preview` | Menjalankan server lokal untuk menguji hasil build produksi |
+| `npm run lint` | Menjalankan ESLint untuk memeriksa kualitas kode dan aturan React 19 |
 
-- 1 Unique Dashboard
-- 35+ dashboard components
-- 50+ UI elements
-- Basic Figma design files
-- Community support
+---
 
-### Pro Version
+## 📐 Konvensi & Standar Kode
 
-- 7 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, SaaS, Stocks, Logistics (more coming soon)
-- 500+ dashboard components and UI elements
-- Complete Figma design file
-- Email support
+* **Tailwind CSS v4**: Konfigurasi tema sepenuhnya berada di [`src/index.css`](file:///Users/mmm/Documents/project/FE/ecommerce-frontend/src/index.css) di bawah blok `@theme`. **Jangan membuat file `tailwind.config.js/ts`**.
+* **CSS Logical Properties**: Selalu gunakan properti arah logis (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`) alih-alih properti fisik (`ml`, `mr`, `pl`, `pr`, `left`, `right`) demi kepatuhan tampilan internasional.
+* **Aturan Interpolasi i18n**: Konfigurasi i18next menggunakan kurung tunggal. Gunakan format `{variable}` (contoh: `{name}`, `{count}`), **bukan** format kurung ganda `{{variable}}`.
+* **Penggunaan Ikon**: Selalu impor ikon dari barrel `@/icons` (contoh: `import { SearchIcon, PlusIcon } from "@/icons"`). Hindari menaruh markup SVG mentah langsung di dalam komponen JSX.
+* **SEO Page Meta**: Setiap halaman rute wajib menyertakan komponen `<PageMeta title="..." description="..." />` sebagai elemen pertamanya.
 
-To learn more about pro version features and pricing, visit our [pricing page](https://tailadmin.com/pricing).
+---
 
-## Changelog
+## 📄 Lisensi
 
-### Version 2.4.0 - [September 13, 2026]
-
-- Added Internationalization (Multi Language) support.
-- Updated complete template styles to support RTL.
-- Added Yearly View into calendar page.
-- Updated `maplibre-gl` implementation with `react-map-gl`.
-- Replaced `@react-jvectormap` with `jsvectormap`.
-- Added new requested components and fixed noted accessibility issues.
-- Updated project structure and component compositions for easy adaption.
-- Added AGENTS.md to easily work with AI Agents.
-- Updated all the packages and libraries to the latest versions. Also removed unused packages.
-
-### Version 2.3.1 - [May 23, 2026]
-
-- Added AI Settings page to configure models, keys, and token limits.
-- Added Maps page with MapLibre GL, Leaflet, and iframe styles.
-- Added Vector Maps page powered by AmCharts 5 geodata (World & USA).
-- Added Radar Charts page with 3 unique formats.
-- Added Radial Progress Charts page featuring 4 custom layout templates.
-- Introduced new Bar Charts Five & Six and Pie Charts Four & Five.
-
-### Version 2.3.0 - [April 28, 2026]
-
-- Added **AI Dashboard** with token usage and revenue tracking.
-- Added **Sales Dashboard** with retention and multi-channel analytics.
-- Added **Finance Dashboard** with cashflow and balance management.
-- Introduced **6 New Layout variations** for improved UI flexibility.
-- Integrated **Advanced Data Visualization** with 7+ new chart types.
-
-### Version 2.1.0 - [Dec 30, 2025]
-
-- Resolved Date Picker positioning and input issues in Charts.
-
-### Version 2.0.2 - [March 25, 2025]
-
-- Upgraded to React 19
-- Included overrides for packages to prevent peer dependency errors.
-- Migrated from react-flatpickr to flatpickr package for React 19 support
-
-### Version 2.0.1 - [February 27, 2025]
-
-#### Update Overview
-
-- Upgraded to Tailwind CSS v4 for better performance and efficiency.
-- Updated class usage to match the latest syntax and features.
-- Replaced deprecated class and optimized styles.
-
-#### Next Steps
-
-- Run npm install or yarn install to update dependencies.
-- Check for any style changes or compatibility issues.
-- Refer to the Tailwind CSS v4 [Migration Guide](https://tailwindcss.com/docs/upgrade-guide) on this release. if needed.
-- This update keeps the project up to date with the latest Tailwind improvements. 🚀
-
-### Version 2.0.0 - [February 2025]
-
-A major update with comprehensive redesign and modern React patterns implementation.
-
-#### Major Improvements
-
-- Complete UI redesign with modern React patterns
-- New features: collapsible sidebar, chat, and calendar
-- Improved performance and accessibility
-- Updated data visualization using ApexCharts
-
-#### Key Features
-
-- Redesigned dashboards (Ecommerce, Analytics, Marketing, CRM)
-- Enhanced navigation with React Router integration
-- Advanced tables with sorting and filtering
-- Calendar with drag-and-drop support
-- New UI components and improved existing ones
-
-#### Breaking Changes
-
-- Updated sidebar component API
-- Migrated charts to ApexCharts
-- Revised authentication system
-
-[Read more](https://tailadmin.com/docs/update-logs/react) on this release.
-
-### Version 1.3.7 - [June 20, 2024]
-
-#### Enhancements
-
-1. Remove Repetition of DefaultLayout in every Pages
-2. Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
-
-### Version 1.3.6 - [Jan 31, 2024]
-
-#### Enhancements
-
-1. Integrate flatpickr in [Date Picker/Form Elements]
-2. Change color after select an option [Select Element/Form Elements].
-3. Make it functional [Multiselect Dropdown/Form Elements].
-4. Make best value editable [Pricing Table One/Pricing Table].
-5. Rearrange Folder structure.
-
-### Version 1.2.0 - [Apr 28, 2023]
-
-- Add Typescript in TailAdmin React.
-
-### Version 1.0.0 - Initial Release - [Mar 13, 2023]
-
-- Initial release of TailAdmin React.
-
-## License
-
-TailAdmin React.js Free Version is released under the MIT License.
-
-## Support
-
-If you find this project helpful, please consider giving it a star on GitHub. Your support helps us continue developing
-and maintaining this template.
+Proyek ini dikembangkan untuk kebutuhan internal **FastShop Admin**. Hak cipta dilindungi undang-undang.

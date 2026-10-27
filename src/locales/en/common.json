@@ -7,13 +7,29 @@
     "viewMore": "View More",
     "delete": "Delete",
     "filter": "Filter",
-    "seeAll": "See all"
+    "seeAll": "See all",
+    "success": "Success",
+    "error": "Failed",
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "saving": "Saving...",
+    "loading": "Loading...",
+    "optional": "Optional",
+    "uncategorized": "Uncategorized",
+    "active": "Active",
+    "inactive": "Inactive",
+    "previous": "Previous",
+    "next": "Next",
+    "copy": "Copy ID",
+    "copied": "Copied!",
+    "refresh": "Reload Data",
+    "detail": "Details"
   },
   "sidebar": {
     "groups": {
-      "menu": "Menu",
-      "support": "Support",
-      "others": "Others"
+      "menu": "Main Menu",
+      "account": "Account & Settings",
+      "others": "UI Elements Demo"
     },
     "badges": {
       "new": "new",
@@ -120,12 +136,10 @@
       "supportReply": "Ticket Reply",
       "email": "Email",
       "inbox": "Inbox",
-      "inboxDetails": "Details"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Leading Tailwind CSS Admin Template with 500+ UI Component and Pages.",
-      "purchasePlan": "Purchase Plan"
+      "inboxDetails": "Details",
+      "orders": "Orders",
+      "categories": "Categories",
+      "productList": "Product List"
     }
   },
   "header": {
@@ -151,7 +165,16 @@
     "title": "E-commerce Dashboard",
     "metrics": {
       "customers": "Customers",
-      "orders": "Orders"
+      "orders": "Orders",
+      "totalRevenue": "Total Revenue",
+      "totalOrders": "Total Orders",
+      "completedOrders": "Completed Orders",
+      "pendingOrders": "Pending Orders",
+      "revenueBadge": "IDR",
+      "allBadge": "All",
+      "completedBadge": "Completed",
+      "paidBadge": "Paid",
+      "pendingBadge": "Pending"
     },
     "months": {
       "jan": "Jan",
@@ -191,23 +214,52 @@
     },
     "recentOrders": {
       "title": "Recent Orders",
-      "products": "Products",
-      "category": "Category",
-      "price": "Price",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variant} other {# Variants}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Watch",
-        "smartphone": "SmartPhone",
-        "electronics": "Electronics",
-        "accessories": "Accessories"
+      "subtitle": "Latest 5 incoming order transactions",
+      "seeAll": "View All",
+      "columns": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "total": "Total",
+        "status": "Status",
+        "date": "Date"
       },
+      "empty": "No recent orders yet.",
+      "error": "Failed to load recent orders.",
+      "customerFallback": "Customer",
       "statuses": {
-        "delivered": "Delivered",
+        "paid": "Paid",
+        "completed": "Completed",
+        "processing": "Processing",
+        "shipped": "Shipped",
         "pending": "Pending",
-        "canceled": "Canceled"
+        "cancelled": "Cancelled",
+        "failed": "Failed"
       }
+    },
+    "orderStatus": {
+      "title": "Order Status",
+      "subtitle": "Distribution of all current transaction statuses",
+      "totalOrders": "Total Orders",
+      "orderCount": "{count} orders",
+      "noData": "No transaction data yet",
+      "labels": {
+        "completed": "Completed",
+        "paid": "Paid",
+        "processing": "Processing",
+        "pending": "Pending",
+        "shipped": "Shipped",
+        "cancelled": "Cancelled"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "subtitle": "Frequently used store operations",
+      "addProduct": "Add Product",
+      "addProductDesc": "Input product catalog and new stock",
+      "manageOrders": "Manage Orders",
+      "manageOrdersDesc": "Check payments & update shipping",
+      "productCategories": "Product Categories",
+      "productCategoriesDesc": "Organize store showcase category structure"
     },
     "demographic": {
       "title": "Customers Demographic",
@@ -875,6 +927,304 @@
         "completed": "Completed",
         "inProgress": "In Progress"
       }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "FastShop Admin",
+      "subtitle": "Enter your email and password to access the admin dashboard",
+      "emailLabel": "Email",
+      "emailPlaceholder": "admin@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "keepLoggedIn": "Keep me logged in",
+      "forgotPassword": "Forgot password?",
+      "submitButton": "Sign In",
+      "processing": "Processing...",
+      "validationError": "Please enter both email and password.",
+      "errorTitle": "Login Failed",
+      "defaultError": "Login failed. Please check your email and password."
+    }
+  },
+  "categories": {
+    "title": "Product Categories",
+    "subtitle": "Manage taxonomy, storefront structure, and category icons",
+    "meta": {
+      "title": "Categories | FastShop Admin",
+      "description": "Manage catalog taxonomy and product categories for your store"
+    },
+    "actions": {
+      "addCategory": "Add Category",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "deleting": "Deleting...",
+      "confirmDelete": "Delete Category"
+    },
+    "search": {
+      "placeholder": "Search categories and press Enter...",
+      "resetSearch": "Reset Search",
+      "searching": "Searching..."
+    },
+    "table": {
+      "columns": {
+        "category": "Category",
+        "slug": "Slug",
+        "productCount": "Products",
+        "createdAt": "Created At",
+        "actions": "Actions"
+      },
+      "empty": "No categories found.",
+      "emptySearch": "No categories matching \"{keyword}\".",
+      "productCount": "{count} products",
+      "showingCount": "Showing {count} categories",
+      "noIcon": "No Icon"
+    },
+    "form": {
+      "createTitle": "Add New Category",
+      "editTitle": "Edit Category",
+      "nameLabel": "Category Name",
+      "namePlaceholder": "e.g. Shoes & Sportswear",
+      "slugLabel": "URL Slug",
+      "slugPlaceholder": "shoes-sportswear",
+      "slugHint": "Slug is automatically generated from name and used for URL routing.",
+      "iconUrlLabel": "Icon URL (Optional)",
+      "iconUrlPlaceholder": "https://example.com/icons/category.png",
+      "iconUrlHint": "Public image link or SVG icon for storefront display.",
+      "validation": {
+        "nameRequired": "Category name is required."
+      }
+    },
+    "deleteModal": {
+      "title": "Delete Category",
+      "warning": "Are you sure you want to delete category \"{name}\"?",
+      "affectedProductsWarning": "Warning: There are {count} products currently assigned to this category. Deleting this category may detach them.",
+      "irreversible": "This action cannot be undone."
+    },
+    "notifications": {
+      "createSuccess": "Category \"{name}\" added successfully.",
+      "updateSuccess": "Category \"{name}\" updated successfully.",
+      "deleteSuccess": "Category \"{name}\" deleted successfully.",
+      "loadError": "Failed to load categories. Please reload the page.",
+      "saveError": "Failed to save category. Please check your input.",
+      "deleteError": "Failed to delete category."
+    }
+  },
+  "products": {
+    "title": "Product List",
+    "subtitle": "Manage catalog products, pricing, stock levels, and categories",
+    "meta": {
+      "title": "Product Catalog | FastShop Admin",
+      "description": "Manage catalog inventory, prices, stock, and storefront display",
+      "createTitle": "Add Product | FastShop Admin",
+      "createDescription": "Add a new product to your inventory and catalog",
+      "editTitle": "Edit Product | FastShop Admin",
+      "editDescription": "Update catalog details, pricing, inventory stock, and specifications",
+      "detailDescription": "View complete product details, pricing specifications, inventory stock, and categories"
+    },
+    "filter": {
+      "allCategories": "All Categories"
+    },
+    "search": {
+      "placeholder": "Search products and press Enter...",
+      "resetFilters": "Reset Search & Filters"
+    },
+    "table": {
+      "columns": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "empty": "No products found.",
+      "emptyDesc": "Click 'Add Product' above to create your first product.",
+      "emptyFiltered": "No products match your search/filter criteria.",
+      "emptyFilteredDesc": "Try different search terms or change the category filter.",
+      "showingSummary": "Showing {from}-{to} of {total} products",
+      "pageIndicator": "Page {current} / {total}",
+      "noImage": "No image"
+    },
+    "stock": {
+      "inStock": "In Stock",
+      "low": "Low Stock",
+      "outOfStock": "Out of Stock"
+    },
+    "detail": {
+      "title": "Product Details",
+      "overview": "Overview & Specifications",
+      "createdAt": "Created At",
+      "updatedAt": "Last Updated",
+      "categoryId": "Category ID",
+      "noDescription": "No description added for this product."
+    },
+    "actions": {
+      "addProduct": "Add Product",
+      "createProduct": "Add Product",
+      "viewDetail": "View Details",
+      "viewFullPage": "View Full Page",
+      "edit": "Edit",
+      "editProduct": "Edit Product",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "deleting": "Deleting...",
+      "confirmDelete": "Delete Product",
+      "backToList": "Back to Product List"
+    },
+    "form": {
+      "createTitle": "Add New Product",
+      "createDesc": "Fill in the form below to register a new product to catalog",
+      "editTitle": "Edit Product Details",
+      "editDesc": "Update product details, pricing, stock, and category",
+      "nameLabel": "Product Name",
+      "namePlaceholder": "e.g. Adidas Ultraboost Running Shoes",
+      "categoryLabel": "Category",
+      "categoryPlaceholder": "Select Product Category",
+      "priceLabel": "Price (IDR)",
+      "pricePreview": "Formatted",
+      "stockLabel": "Stock Quantity",
+      "descriptionLabel": "Product Description",
+      "descriptionPlaceholder": "Provide product specifications, features, and info...",
+      "imageUrlLabel": "Product Image URL",
+      "imageUrlPlaceholder": "https://images.unsplash.com/...",
+      "imageUrlHint": "Enter a direct image HTTPS URL (JPG, PNG, or WebP).",
+      "imagePreview": "Image Preview",
+      "noImagePreview": "No image URL entered yet",
+      "imageLoadError": "Failed to load image from URL",
+      "validation": {
+        "nameRequired": "Product name is required.",
+        "categoryRequired": "Please select a product category.",
+        "priceInvalid": "Product price must be a valid number (>= 0).",
+        "stockInvalid": "Stock quantity must be a valid integer (>= 0)."
+      }
+    },
+    "deleteModal": {
+      "title": "Delete Product",
+      "warning": "Are you sure you want to delete product \"{name}\"?",
+      "note": "Note: Products with transaction history will be deactivated instead of permanently deleted."
+    },
+    "notifications": {
+      "createSuccess": "Product \"{name}\" added successfully.",
+      "updateSuccess": "Product \"{name}\" updated successfully.",
+      "deleteSuccess": "Product \"{name}\" deleted successfully.",
+      "saveError": "Failed to save product. Please check your inputs.",
+      "deleteError": "Failed to delete product.",
+      "loadDetailError": "Failed to load product details.",
+      "notFound": "Product not found or has been deleted."
+    },
+    "errors": {
+      "fetchFailed": "Failed to load product list."
+    }
+  },
+  "orders": {
+    "title": "Order Management",
+    "subtitle": "Monitor incoming orders, verify transfer receipts, and manage shipping flow",
+    "meta": {
+      "title": "Order Management | FastShop Admin",
+      "description": "Manage customer orders, verify payment proofs, and update order statuses"
+    },
+    "tabs": {
+      "all": "All"
+    },
+    "statuses": {
+      "pending": "Pending Payment",
+      "processing": "Processing",
+      "paid": "Paid",
+      "shipped": "Shipped",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "failed": "Failed"
+    },
+    "search": {
+      "placeholder": "Search order ID / customer...",
+      "resetFilters": "Reset Search & Filters"
+    },
+    "table": {
+      "columns": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "totalAmount": "Total Amount",
+        "status": "Status",
+        "paymentProof": "Payment Proof",
+        "createdAt": "Transaction Date",
+        "actions": "Actions"
+      },
+      "empty": "No orders found.",
+      "emptyFiltered": "No orders match your filter criteria.",
+      "showingSummary": "Showing {from}-{to} of {total} orders",
+      "pageIndicator": "Page {current} / {total}"
+    },
+    "paymentProof": {
+      "title": "Payment Proof",
+      "view": "View Payment Proof",
+      "uploaded": "View Proof",
+      "none": "Not Uploaded",
+      "notUploaded": "Customer has not uploaded a payment proof yet.",
+      "loadError": "Failed to load transfer proof image.",
+      "openOriginal": "Open Original Image",
+      "clickToEnlarge": "Click to Enlarge",
+      "submittedAt": "Uploaded on"
+    },
+    "actions": {
+      "viewDetail": "View Order Details",
+      "updateStatus": "Update Status",
+      "backToList": "Back to Orders"
+    },
+    "updateStatus": {
+      "title": "Update Order Status",
+      "currentStatus": "Current Status",
+      "newStatusLabel": "Select New Status",
+      "submitButton": "Update Status",
+      "updating": "Saving...",
+      "paidNote": "Status 'Paid' confirms payment verification and order is ready for processing.",
+      "shippedNote": "Status 'Shipped' indicates the package has been handed over to the courier.",
+      "cancelledNote": "Warning: Cancelling the order terminates the fulfillment process.",
+      "completedNote": "Order is completed once successfully received by the customer."
+    },
+    "detail": {
+      "title": "Order Details",
+      "itemsTitle": "Purchased Products",
+      "itemsDesc": "Details of items purchased in this order",
+      "noItems": "No product items in this order.",
+      "subtotal": "Product Subtotal",
+      "totalAmount": "Total Amount",
+      "shippingTitle": "Shipping Information",
+      "addressLabel": "Destination Address",
+      "noAddress": "No shipping address provided.",
+      "statusOverview": "Order Status",
+      "createdAt": "Created At",
+      "updatedAt": "Last Updated",
+      "customerTitle": "Customer Information",
+      "phone": "Phone Number"
+    },
+    "notifications": {
+      "statusUpdateSuccess": "Order #{id} status successfully updated to {status}.",
+      "statusUpdateError": "Failed to update order status.",
+      "notFound": "Order not found or has been deleted."
+    },
+    "errors": {
+      "fetchFailed": "Failed to load order list.",
+      "fetchDetailFailed": "Failed to load order details."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "meta": {
+      "title": "Profile | FastShop Admin",
+      "description": "Administrator profile page for FastShop Admin Dashboard"
+    },
+    "cardTitle": "Account Information",
+    "info": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "role": "Role / Access Level",
+      "id": "Administrator ID",
+      "createdAt": "Registered Since"
     }
   }
 }

@@ -89,17 +89,17 @@ const AppHeader: React.FC = () => {
             {/* Cross Icon */}
           </button>
 
-          <Link to="/" className="xl:hidden">
+          <Link to="/" className="flex items-center gap-2.5 xl:hidden">
             <img
-              className="dark:hidden"
-              src="/images/logo/logo.svg"
-              alt="Logo"
+              src="/images/logo/logo.png"
+              alt="FastShop Logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain shrink-0"
             />
-            <img
-              className="hidden dark:block"
-              src="/images/logo/logo-dark.svg"
-              alt="Logo"
-            />
+            <span className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+              FastShop
+            </span>
           </Link>
 
           <button
