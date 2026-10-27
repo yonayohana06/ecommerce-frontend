@@ -1210,5 +1210,21 @@
       "fetchFailed": "Failed to load order list.",
       "fetchDetailFailed": "Failed to load order details."
     }
+  },
+  "profile": {
+    "title": "Profile",
+    "meta": {
+      "title": "Profile | FastShop Admin",
+      "description": "Administrator profile page for FastShop Admin Dashboard"
+    },
+    "cardTitle": "Account Information",
+    "info": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "role": "Role / Access Level",
+      "id": "Administrator ID",
+      "createdAt": "Registered Since"
+    }
   }
 }

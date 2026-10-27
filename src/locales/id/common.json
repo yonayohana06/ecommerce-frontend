@@ -1212,5 +1212,21 @@
       "fetchFailed": "Gagal memuat daftar pesanan.",
       "fetchDetailFailed": "Gagal memuat detail pesanan."
     }
+  },
+  "profile": {
+    "title": "Profil",
+    "meta": {
+      "title": "Profil | FastShop Admin",
+      "description": "Halaman profil administrator FastShop Admin Dashboard"
+    },
+    "cardTitle": "Informasi Akun",
+    "info": {
+      "name": "Nama Lengkap",
+      "email": "Alamat Email",
+      "phone": "Nomor Telepon",
+      "role": "Peran / Hak Akses",
+      "id": "ID Administrator",
+      "createdAt": "Terdaftar Sejak"
+    }
   }
 }
